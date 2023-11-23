@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:44:18 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/23 12:26:43 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/23 17:45:40 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,27 +77,35 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 
-/* LINKED LIST */
+/*
+LINKED LIST
+*/
 
-typedef struct s_list
+typedef struct s_nodeint
 {
-	void			*content;
-	struct s_list	*next;
-}					t_list;
+	long				data;
+	struct s_nodeint	*next;
+	struct s_nodeint	*previous;
+}t_nodeint;
 
-t_list		*ft_lstnew(void *content);
-void		ft_lstadd_front(t_list **lst, t_list *new);
-int			ft_lstsize(t_list *lst);
-t_list		*ft_lstlast(t_list *lst);
-void		ft_lstadd_back(t_list **lst, t_list *node);
-void		ft_lstdelone(t_list *lst, void (*del)(void *));
-void		ft_lstclear(t_list **lst, void (*del)(void *));
-void		ft_lstiter(t_list *lst, void (*f)(void *));
-t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+typedef struct s_linked_listint
+{
+	t_nodeint	*head;
+	t_nodeint	*last;
+	long		size;
+}t_llint;
 
+t_nodeint	*ft_llint_data_add_back(t_llint *list, long data);
+t_nodeint	*ft_llint_data_add_front(t_llint *list, long data);
+void		*ft_llint_del_node(t_llint *list,t_nodeint *node);
+void		*ft_llint_del_list(t_llint *list);
+t_llint		*ft_llint_new(void);
+void		ft_llint_rotate(t_llint *list);
+void		ft_llint_swap_data_(t_llint *list);
+void		ft_llint_print(t_llint *list);
 
 /* 
----	PRINTF -----------------------------------------------
+PRINTF
 */
 
 # define SBUFSIZ 8192
@@ -115,7 +123,7 @@ int			ft_arg_to_buffer(char *buffer, t_bd *bd, va_list *args, char c);
 void		ft_send_char(char *buffer, t_bd *bd, char c);
 void		ft_send_str(char *buffer, t_bd *bd, const char *str);
 void		ft_send_ptr(char *buffer, t_bd *bd, void *ptr);
-void		ft_send_decimal(char *buffer, t_bd *bd, int n);
+void		ft_send_decimal(char *buffer, t_bd *bd, long long n);
 void		ft_send_uint(char *buffer, t_bd *bd, unsigned int n);
 
 #endif

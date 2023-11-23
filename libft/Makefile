@@ -6,7 +6,7 @@
 #    By: aurban <aurban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/20 06:06:39 by aurban            #+#    #+#              #
-#    Updated: 2023/11/23 12:26:52 by aurban           ###   ########.fr        #
+#    Updated: 2023/11/23 17:45:08 by aurban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ LIB_FT_PATH:=.
 
 CC:=gcc
 INCLUDE_PATH= ../includes
-CFLAGS:=-Wall -Werror -Wextra -I$(INCLUDE_PATH) -g3# -fsanitize=address
+CFLAGS:=-Wall -Werror -Wextra -I$(INCLUDE_PATH)
 
 LIB_FT_FILES:=ft_atoi.c \
 	ft_bzero.c \
@@ -51,15 +51,6 @@ LIB_FT_FILES:=ft_atoi.c \
 	ft_tolower.c \
 	ft_toupper.c \
 	ft_isascii.c \
-	ft_lstnew.c \
-	ft_lstadd_front.c \
-	ft_lstsize.c \
-	ft_lstlast.c \
-	ft_lstadd_back.c \
-	ft_lstdelone.c \
-	ft_lstclear.c \
-	ft_lstiter.c \
-	ft_lstmap.c \
 	ft_uitoa.c \
 	ft_printf.c \
 	ft_uitohex.c \
@@ -70,6 +61,13 @@ LIB_FT_FILES:=ft_atoi.c \
 	ft_lltoa.c \
 	ft_atoldb.c \
 	ft_atoll.c
+
+FT_LINKED_LIST_PATH:=linked_list
+LIB_FT_LINKED_LIST_FILES:=\
+	ft_linked_list_add.c	ft_linked_list_del.c	ft_linked_list_init.c \
+	ft_linked_list_rotate.c	ft_linked_list_swap.c	ft_linked_list_utils.c
+LIB_FT_LINKED_LIST_FILES:= $(addprefix $(FT_LINKED_LIST_PATH)/,$(LIB_FT_LINKED_LIST_FILES))
+LIB_FT_FILES+=$(LIB_FT_LINKED_LIST_FILES)
 
 LIB_FT_FILES:= $(addprefix $(LIB_FT_PATH)/,$(LIB_FT_FILES))
 LIB_FT_OBJECTS:= $(patsubst %.c,%.o,$(LIB_FT_FILES))

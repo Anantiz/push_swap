@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 16:06:49 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/12 16:12:32 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/23 16:23:22 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,11 @@ void	ft_send_ptr(char *buffer, t_bd *bd, void *ptr)
 	free(str);
 }
 
-void	ft_send_decimal(char *buffer, t_bd *bd, int n)
+void	ft_send_decimal(char *buffer, t_bd *bd, long long n)
 {
 	char	*n_str;
 
-	n_str = ft_itoa(n);
+	n_str = ft_lltoa(n);
 	ft_send_str(buffer, bd, n_str);
 	free(n_str);
 }

@@ -16,6 +16,7 @@ static int	ft_arg_to_buff3(char *buff, t_bd *bd, va_list *args, char c)
 {
 	unsigned int	un;
 	char			*str;
+	long			l;
 
 	if (c == 'X')
 	{
@@ -26,6 +27,11 @@ static int	ft_arg_to_buff3(char *buff, t_bd *bd, va_list *args, char c)
 	}
 	else if (c == '%')
 		ft_send_char(buff, bd, '%');
+	else if (c == 'l')
+	{
+		l = va_arg(*args, long);
+		ft_send_decimal(buff, bd, l);
+	}
 	else
 		return (-1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/23 12:18:03 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/23 17:46:16 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ returns:
 */
 static int	main_argument_parser(int argc, char **argv, t_stack *stack)
 {
-	t_list	*new_node;
-	int		*node_data;
 	int		list_size;
 	int		i;
 

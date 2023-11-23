@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:25:28 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/18 15:02:58 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/23 17:05:08 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ static long double	get_decimal(char *str)
 {
 	long double	n;
 	long double	i;
-	long double sign;
+	long double	sign;
 
 	sign = 1.0;
 	if (*str == '-')
 	{
 		sign = -1.0;
-		str++;	
+		str++;
 	}
-	else if(*str == '+')
-		str++;		
+	else if (*str == '+')
+		str++;
 	n = 0.0;
 	i = 10;
 	while (ft_isdigit((int)(*str)))
@@ -39,7 +39,7 @@ static long double	get_decimal(char *str)
 
 long double	ft_atoldb(char *str)
 {
-	long double		n;	
+	long double	n;
 	long long	left;
 
 	n = 0.0;

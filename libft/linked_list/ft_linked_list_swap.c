@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_linked_list_swap.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 12:28:05 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/23 12:36:07 by aurban           ###   ########.fr       */
+/*   Created: 2023/11/23 16:11:12 by aurban            #+#    #+#             */
+/*   Updated: 2023/11/23 16:57:03 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	stck_push(t_stack *src, t_stack *dest)
+void	ft_llint_swap_data_(t_llint *list)
 {
-	t_list	*second;
+	long	temp;
 
-	if (src->name == 'A')
-		write(1, "pb\n", 3);
-	else
-		write(1, "pa\n", 3);
-	second = src->head->next;
-	ft_lstadd_front(&dest->head, src->head);
-	src->head = second;
+	temp = list->head->data;
+	list->head->data = list->head->next->data;
+	list->head->next->data = temp;
 }

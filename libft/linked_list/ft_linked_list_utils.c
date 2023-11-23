@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_linked_list_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 14:33:04 by aurban            #+#    #+#             */
-/*   Updated: 2023/10/25 10:21:11 by aurban           ###   ########.fr       */
+/*   Created: 2023/11/23 15:54:01 by aurban            #+#    #+#             */
+/*   Updated: 2023/11/23 16:31:58 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+void	ft_llint_print(t_llint *list)
 {
-	if (lst && del)
+	t_nodeint	*node;
+	long		i;
+
+	node = list->head;
+	i = 0;
+	while (node)
 	{
-		del(lst->content);
-		free(lst);
+		ft_printf("node %l: %l\n", i, node->data);
+		node = node->next;
+		i++;
 	}
 }

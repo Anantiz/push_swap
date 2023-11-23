@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_object_stack.c                                  :+:      :+:    :+:   */
+/*   ft_linked_list_rotate.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 11:32:50 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/23 12:47:27 by aurban           ###   ########.fr       */
+/*   Created: 2023/11/23 16:31:21 by aurban            #+#    #+#             */
+/*   Updated: 2023/11/23 17:03:27 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-t_stack	*ft_init_stack(char name)
+void	ft_llint_rotate(t_llint *list)
 {
-	t_stack	*new_stack;
-
-	new_stack = malloc(sizeof(t_stack));
-	if (!new_stack)
-		return (NULL);
-	new_stack->head = ft_lst_new(NULL);
-	new_stack->t_to_last = NULL;
-	new_stack->s_to_last = NULL;
-	new_stack->last = new_stack->head;
-	new_stack->name = name;
-}
-
-void	stck_free_node_data(void *x)
-{
-	free(x)
+	list->last->next = list->head;
+	list->head->previous = list->last;
+	list->last = list->last->next;
+	list->head = list->head->next;
+	list->last->next = NULL;
+	list->head->previous = NULL;
 }
