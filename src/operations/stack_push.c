@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   help_messages.c                                    :+:      :+:    :+:   */
+/*   stack_push.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 11:21:38 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 13:11:41 by aurban           ###   ########.fr       */
+/*   Created: 2023/11/24 12:26:51 by aurban            #+#    #+#             */
+/*   Updated: 2023/11/24 12:34:57 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	help_no_args(void)
+void	push_a(t_llint *stack_b, t_llint *stack_a)
 {
-	ft_printf("No arguments provided, please pass the numbers you wanna"
-	" sort as separated arguments\n");
-	return (1);
+	ft_llint_data_add_front(stack_a, stack_b->head->data);
+	ft_llint_del_node(stack_b, stack_b->head);
+	write(1, "pa\n", 3);
 }
 
-int	help_invalid_argument(char *str)
+void	push_b(t_llint *stack_a, t_llint *stack_b)
 {
-	ft_printf("Error: '%s' is an invalid argument\n", str);
-	return (1);
+	ft_llint_data_add_front(stack_b, stack_a->head->data);
+	ft_llint_del_node(stack_a, stack_a->head);
+	write(1, "pb\n", 3);
 }

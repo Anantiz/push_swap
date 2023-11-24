@@ -6,13 +6,13 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:11:12 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/23 16:57:03 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/24 13:14:38 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_llint_swap_data_(t_llint *list)
+void	ft_llint_swap_data_front(t_llint *list)
 {
 	long	temp;
 

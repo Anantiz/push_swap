@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   help_messages.c                                    :+:      :+:    :+:   */
+/*   stack_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 11:21:38 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 13:11:41 by aurban           ###   ########.fr       */
+/*   Created: 2023/11/24 12:24:00 by aurban            #+#    #+#             */
+/*   Updated: 2023/11/24 12:26:41 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	help_no_args(void)
+void	swap_a(t_llint *stack_a)
 {
-	ft_printf("No arguments provided, please pass the numbers you wanna"
-	" sort as separated arguments\n");
-	return (1);
+	ft_llint_swap_data_front(stack_a);
+	write(1, "sa\n", 3);
 }
 
-int	help_invalid_argument(char *str)
+void	swap_b(t_llint *stack_a)
 {
-	ft_printf("Error: '%s' is an invalid argument\n", str);
-	return (1);
+	ft_llint_swap_data_front(stack_a);
+	write(1, "sa\n", 3);
+}
+
+void	swap_swap(t_llint *stack_a, t_llint *stack_b)
+{
+	ft_llint_swap_data_front(stack_a);
+	ft_llint_swap_data_front(stack_b);
+	write(1, "ss\n", 3);
 }

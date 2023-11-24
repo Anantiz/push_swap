@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:44:18 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/23 17:45:40 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/24 12:46:57 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,12 @@ typedef struct s_linked_listint
 
 t_nodeint	*ft_llint_data_add_back(t_llint *list, long data);
 t_nodeint	*ft_llint_data_add_front(t_llint *list, long data);
-void		*ft_llint_del_node(t_llint *list,t_nodeint *node);
+void		*ft_llint_del_node(t_llint *list, t_nodeint *node);
 void		*ft_llint_del_list(t_llint *list);
 t_llint		*ft_llint_new(void);
 void		ft_llint_rotate(t_llint *list);
-void		ft_llint_swap_data_(t_llint *list);
+void		ft_llint_rotate_inverse(t_llint *list);
+void		ft_llint_swap_data_front(t_llint *list);
 void		ft_llint_print(t_llint *list);
 
 /* 
