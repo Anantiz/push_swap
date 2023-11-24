@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 13:11:10 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/24 16:46:11 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 
 void		baby_sort(t_llint *stack);
+void		sortzilla(t_llint *stack_a, t_llint *stack_b);
 
 /*
 OPERATIONS
@@ -37,10 +38,10 @@ void		rotate_inv_b(t_llint *stack);
 void		inv_rotate_rotate(t_llint *stack_a, t_llint *stack_b);
 
 /*
-Help_Messages
+UTILS
 */
 
-int			help_no_args(void);
-int			help_invalid_argument(char *str);
+int			check_sort(t_llint *list);
+int			check_duplicates(t_llint *list);
 
 #endif

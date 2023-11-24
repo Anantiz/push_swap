@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:35:02 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 15:15:57 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/24 16:18:07 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_nodeint	*ft_llint_data_add_back(t_llint *list, long data)
 	t_nodeint	*node;
 
 	node = malloc(sizeof(t_nodeint));
-	if (!node)
+	if (!node || !list)
 		return (NULL);
 	node->data = data;
 	node->next = NULL;
@@ -37,6 +37,8 @@ t_nodeint	*ft_llint_data_add_front(t_llint *list, long data)
 {
 	t_nodeint	*node;
 
+	if (!list)
+		return (NULL);
 	node = malloc(sizeof(t_nodeint));
 	if (!node)
 		return (NULL);

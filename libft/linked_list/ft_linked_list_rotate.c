@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:31:21 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 12:40:38 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/24 16:18:57 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_llint_rotate(t_llint *list)
 {
+	if (!list || !list->last || !list->head)
+		return ;
 	list->last->next = list->head;
 	list->head->previous = list->last;
 	list->last = list->last->next;
@@ -24,6 +26,8 @@ void	ft_llint_rotate(t_llint *list)
 
 void	ft_llint_rotate_inverse(t_llint *list)
 {
+	if (!list || !list->last || !list->head)
+		return ;
 	list->head->previous = list->last;
 	list->last->next = list->head;
 	list->head = list->last;

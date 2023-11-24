@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_linked_list_swap.c                              :+:      :+:    :+:   */
+/*   check_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 16:11:12 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 16:19:58 by aurban           ###   ########.fr       */
+/*   Created: 2023/11/24 16:27:10 by aurban            #+#    #+#             */
+/*   Updated: 2023/11/24 16:35:37 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_llint_swap_data_front(t_llint *list)
+int	check_sort(t_llint *list)
 {
-	long	temp;
+	int			i;
+	t_nodeint	*node;
 
-	if (!list || !list->head || !list->head->next)
-		return ;
-	temp = list->head->data;
-	list->head->data = list->head->next->data;
-	list->head->next->data = temp;
+	i = 0;
+	if (!list)
+		return (-1);
+	node = list->head;
+	while (node && node->next)
+	{
+		if (node->data > node->next->data)
+			return (i);
+		i ++;
+	}
+	return (0);
 }

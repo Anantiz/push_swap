@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   help_messages.c                                    :+:      :+:    :+:   */
+/*   sortzilla.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 11:21:38 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 13:11:41 by aurban           ###   ########.fr       */
+/*   Created: 2023/11/24 16:45:19 by aurban            #+#    #+#             */
+/*   Updated: 2023/11/24 17:00:34 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	help_no_args(void)
+void	sortzilla(t_llint *stack_a, t_llint *stack_b)
 {
-	ft_printf("No arguments provided, please pass the numbers you wanna"
-	" sort as separated arguments\n");
-	return (1);
+	
 }
 
-int	help_invalid_argument(char *str)
-{
-	ft_printf("Error: '%s' is an invalid argument\n", str);
-	return (1);
-}
+/*
+if A < B
+	push_B
+
+*/
