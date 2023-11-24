@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 16:57:19 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/24 17:21:03 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int	clean_b4exit(t_llint *stack_a, t_llint *stack_b)
 	ft_llint_del_list(stack_b);
 	return (0);
 }
-
+#include <stdio.h>
 int	main(int argc, char **argv)
 {
 	int		error;
