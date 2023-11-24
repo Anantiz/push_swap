@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:00:36 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 13:26:54 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/24 15:33:34 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,18 @@ void	baby_sort(t_llint *stack)
 {
 	if (!stack)
 		return ;
-	ft_printf("AA\n");
-	fflush(NULL);
-	if (stack->head > stack->last)
-	{
-		ft_printf("B\n");
-		fflush(NULL);
+	if (stack->head->data > stack->last->data)
 		rotate_a(stack);
-	}
-	if (stack->head > stack->last)
+	if (stack->head->data > stack->last->data)
 		rotate_a(stack);
-	else if (stack->head > stack->head->next)
+	else if (stack->head->data > stack->head->next->data)
 		swap_a(stack);
-	else if (stack->head->next > stack->last && stack->head < stack->head->next)
+	else if (stack->head->next->data > stack->last->data && \
+		stack->head->data < stack->head->next->data)
 	{
 		swap_a(stack);
 		rotate_a(stack);
 	}
+	ft_llint_printm(stack);
+	fflush(stdout);
 }

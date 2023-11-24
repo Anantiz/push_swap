@@ -6,7 +6,7 @@
 #    By: aurban <aurban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 12:48:20 by aurban            #+#    #+#              #
-#    Updated: 2023/11/24 13:18:20 by aurban           ###   ########.fr        #
+#    Updated: 2023/11/24 15:10:02 by aurban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,24 +33,20 @@ SRC_FILES+=$(OPERATIONS_FILES)
 SRC_FILES:= $(addprefix $(SRC_PATH)/,$(SRC_FILES))
 SRC_OBJECTS:= $(patsubst %.c,%.o,$(SRC_FILES))
 
-$(LIBFT):
-	@make -C $(LIBFT_PATH)/ all
-	@make -C $(LIBFT_PATH)/ clean
-	@mv $(LIBFT_PATH)/$@ ./
-
-all: $(LIBFT) $(NAME)
-
-DO_LIBS: $(LIBFT)
+all: $(NAME)
 
 $(NAME): $(SRC_OBJECTS)
-	$(CC) $^ $(LIBFT) $(CFLAGS) -o $@
+	@make -C $(LIBFT_PATH)
+	@$(CC) $^ -L$(LIBFT_PATH) -lft $(CFLAGS) -o $@
 
-clean: 
+clean:
+	@make -C $(LIBFT_PATH)/ clean
 	@$(RM) $(SRC_OBJECTS)
 
 fclean: clean
-	@$(RM) $(NAME) $(LIBFT) 
+	@make -C $(LIBFT_PATH)/ fclean
+	@$(RM) $(NAME) $(LIBFT)
 
 re: fclean all
 
-.PHONY: all clean fclean re libft DO_LIBS
+.PHONY: all clean fclean re libft

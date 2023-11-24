@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:19:18 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/17 10:24:07 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/24 16:09:40 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	ft_lltoa_neg(char *buffer, int buffer_len, long long n)
 	buffer[0] = '-';
 	while (buffer_len > 0)
 	{
-		buffer[buffer_len--] = ((10 % (n % 10)) % 10) + '0';
+		buffer[buffer_len--] = ((10 - (n % 10)) % 10) + '0';
 		n = n / 10;
 	}
 }

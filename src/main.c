@@ -6,12 +6,11 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 13:16:24 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/24 15:38:15 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	util_is_zero(char *str)
 {
@@ -35,7 +34,7 @@ returns:
 static int	main_argument_parser(int argc, char **argv, t_llint *stack)
 {
 	int		list_size;
-	int		node_data;
+	long	node_data;
 	int		i;
 
 	list_size = argc - 1;
@@ -44,7 +43,7 @@ static int	main_argument_parser(int argc, char **argv, t_llint *stack)
 	i = 1;
 	while (i <= list_size)
 	{
-		node_data = ft_atoi(argv[i]);
+		node_data = (long)ft_atoll(argv[i]);
 		if (node_data == 0 && util_is_zero(argv[i]) == 1)
 			return (help_invalid_argument(argv[i]));
 		ft_llint_data_add_back(stack, node_data);
@@ -69,5 +68,7 @@ int	main(int argc, char **argv)
 	}
 	if (stack_a->size <= 3)
 		baby_sort(stack_a);
+	ft_llint_del_list(stack_a);
+	//ft_llint_del_list(stack_b);
 	return (0);
 }

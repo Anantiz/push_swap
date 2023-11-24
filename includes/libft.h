@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:44:18 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 12:46:57 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/24 15:29:08 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void		ft_llint_rotate(t_llint *list);
 void		ft_llint_rotate_inverse(t_llint *list);
 void		ft_llint_swap_data_front(t_llint *list);
 void		ft_llint_print(t_llint *list);
+void		ft_llint_printm(t_llint *list);
 
 /* 
 PRINTF
