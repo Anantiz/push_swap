@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:00:36 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 15:33:34 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/25 15:39:25 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,4 @@ void	baby_sort(t_llint *stack)
 		swap_a(stack);
 		rotate_a(stack);
 	}
-	ft_llint_printm(stack);
-	fflush(stdout);
 }

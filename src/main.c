@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/25 11:56:38 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/25 13:57:09 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,25 @@ int	main(int argc, char **argv)
 	return (clean_b4exit(stack_a, stack_b));
 }
 
+static int	main_argument_parser(int argc, char **argv, t_llint *stack)
+{
+	int		list_size;
+	long	node_data;
+	int		i;
+
+	list_size = argc - 1;
+	i = 1;
+	while (i <= list_size)
+	{
+		node_data = (long)ft_atoll(argv[i]);
+		if (node_data == 0 && util_is_zero(argv[i]) == 1)
+			return (push_swap_print_error());
+		ft_llint_data_add_back(stack, node_data);
+		i++;
+	}
+	return (check_duplicates(stack));
+}
+
 static int	util_is_zero(char *str)
 {
 	int	len;
@@ -53,27 +72,6 @@ static int	push_swap_print_error(void)
 {
 	write(2, "Error\n", 7);
 	return (1);
-}
-
-static int	main_argument_parser(int argc, char **argv, t_llint *stack)
-{
-	int		list_size;
-	long	node_data;
-	int		i;
-
-	list_size = argc - 1;
-	if (list_size <= 0)
-		return (push_swap_print_error());
-	i = 1;
-	while (i <= list_size)
-	{
-		node_data = (long)ft_atoll(argv[i]);
-		if (node_data == 0 && util_is_zero(argv[i]) == 1)
-			return (push_swap_print_error());
-		ft_llint_data_add_back(stack, node_data);
-		i++;
-	}
-	return (check_duplicates(stack));
 }
 
 static int	clean_b4exit(t_llint *stack_a, t_llint *stack_b)

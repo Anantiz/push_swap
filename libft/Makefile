@@ -6,7 +6,7 @@
 #    By: aurban <aurban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/20 06:06:39 by aurban            #+#    #+#              #
-#    Updated: 2023/11/25 11:20:12 by aurban           ###   ########.fr        #
+#    Updated: 2023/11/25 16:17:11 by aurban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC:=gcc
 INCLUDE_PATH= ../includes
 CFLAGS:=-Wall -Werror -Wextra -I$(INCLUDE_PATH)
 
-FT_FILES:=	\
+FT_FILES:=		\
 	ft_bzero.c	\
 	ft_calloc.c
 
