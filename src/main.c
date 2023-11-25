@@ -6,11 +6,34 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 17:21:03 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/25 11:56:38 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int	util_is_zero(char *str);
+static int	push_swap_print_error(void);
+static int	main_argument_parser(int argc, char **argv, t_llint *stack);
+static int	clean_b4exit(t_llint *stack_a, t_llint *stack_b);
+
+int	main(int argc, char **argv)
+{
+	int		error;
+	t_llint	*stack_a;
+	t_llint	*stack_b;
+
+	stack_a = ft_llint_new();
+	stack_b = ft_llint_new();
+	error = main_argument_parser(argc, argv, stack_a);
+	if (error)
+		return (clean_b4exit(stack_a, stack_b));
+	if (stack_a->size <= 3)
+		baby_sort(stack_a);
+	else if (stack_a->size >= 5)
+		sortzilla(stack_a, stack_b);
+	return (clean_b4exit(stack_a, stack_b));
+}
 
 static int	util_is_zero(char *str)
 {
@@ -59,21 +82,4 @@ static int	clean_b4exit(t_llint *stack_a, t_llint *stack_b)
 	ft_llint_del_list(stack_b);
 	return (0);
 }
-#include <stdio.h>
-int	main(int argc, char **argv)
-{
-	int		error;
-	t_llint	*stack_a;
-	t_llint	*stack_b;
 
-	stack_a = ft_llint_new();
-	stack_b = ft_llint_new();
-	error = main_argument_parser(argc, argv, stack_a);
-	if (error)
-		return (clean_b4exit(stack_a, stack_b));
-	if (stack_a->size <= 3)
-		baby_sort(stack_a);
-	else if (stack_a->size >= 3)
-		sortzilla(stack_a, stack_b);
-	return (clean_b4exit(stack_a, stack_b));
-}
