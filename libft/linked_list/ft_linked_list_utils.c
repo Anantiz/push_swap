@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:54:01 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 16:53:05 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:07:02 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_llint_print(t_llint *list)
 	i = 0;
 	while (node)
 	{
-		ft_printf("node %l: %l\n", i, node->data);
+		ft_printf("node %l: %l\t\tindex= %ld\n", i, node->data, node->index);
 		node = node->next;
 		i++;
 	}

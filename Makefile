@@ -6,7 +6,7 @@
 #    By: aurban <aurban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 12:48:20 by aurban            #+#    #+#              #
-#    Updated: 2023/11/25 16:16:23 by aurban           ###   ########.fr        #
+#    Updated: 2023/11/27 13:05:12 by aurban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ UTILS_FILES:= check_sort.c check_duplicates.c
 UTILS_FILES:=$(addprefix $(UTILS_FILES_PATH)/,$(UTILS_FILES))
 
 SORT_FILES_PATH=sort
-SORT_FILES:= baby_sort.c sortzilla.c
+SORT_FILES:= baby_sort.c sortzilla.c ft_quicksort.c give_indexes.c
 SORT_FILES:=$(addprefix $(SORT_FILES_PATH)/,$(SORT_FILES))
 
 SRC_FILES+=$(OPERATIONS_FILES)
