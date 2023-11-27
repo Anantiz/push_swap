@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 13:28:53 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 19:41:28 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	util_is_zero(char *str)
 		return (0);
 }
 
-static int	push_swap_print_error(int n)
+int	push_swap_print_error(int n)
 {
 	write(2, "Error\n", 7);
 	return (n);

@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:32:06 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 16:58:26 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 19:41:18 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int	check_duplicates(t_llint *list)
 	while (node)
 	{
 		if (search_list_without_node(list, node, node->data) != NULL)
+		{
+			push_swap_print_error(1);
 			return (1);
+		}
 		node = node->next;
 	}		
 	return (0);
