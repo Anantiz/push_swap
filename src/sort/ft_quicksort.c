@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:16:28 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 13:02:40 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:34:16 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static long	qs_sub_sort(long *list, size_t low_index, size_t high_index)
 	return (p1);
 }
 
-void	ft_quicksort(long *list, size_t low_index, size_t high_index)
+void	ft_quicksort(long *list, long low_index, long high_index)
 {
-	size_t	pivot_index;
+	long	pivot_index;
 
 	if (list && (low_index < high_index))
 	{

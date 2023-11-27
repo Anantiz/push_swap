@@ -6,55 +6,11 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 13:02:47 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:28:53 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	util_is_zero(char *str);
-static int	push_swap_print_error(void);
-static int	main_argument_parser(int argc, char **argv, t_llint *stack);
-static int	clean_b4exit(t_llint *stack_a, t_llint *stack_b);
-
-int	main(int argc, char **argv)
-{
-	int		error;
-	t_llint	*stack_a;
-	t_llint	*stack_b;
-
-	stack_a = ft_llint_new();
-	stack_b = ft_llint_new();
-	error = main_argument_parser(argc, argv, stack_a);
-	if (error)
-		return (clean_b4exit(stack_a, stack_b));
-	if (stack_a->size <= 3)
-		baby_sort(stack_a);
-	else if (stack_a->size >= 5)
-		sortzilla(stack_a, stack_b);
-	return (clean_b4exit(stack_a, stack_b));
-}
-
-static int	main_argument_parser(int argc, char **argv, t_llint *stack)
-{
-	int		list_size;
-	long	node_data;
-	int		i;
-
-	list_size = argc - 1;
-	i = 1;
-	while (i <= list_size)
-	{
-		node_data = (long)ft_atoll(argv[i]);
-		if (node_data == 0 && util_is_zero(argv[i]) == 1)
-			return (push_swap_print_error());
-		if (node_data > INT_MAX || node_data < INT_MAX)
-			return (push_swap_print_error());
-		ft_llint_data_add_back(stack, node_data);
-		i++;
-	}
-	return (check_duplicates(stack));
-}
 
 static int	util_is_zero(char *str)
 {
@@ -70,15 +26,55 @@ static int	util_is_zero(char *str)
 		return (0);
 }
 
-static int	push_swap_print_error(void)
+static int	push_swap_print_error(int n)
 {
 	write(2, "Error\n", 7);
-	return (1);
+	return (n);
 }
 
+static int	main_argument_parser(int argc, char **argv, t_llint *stack)
+{
+	int		list_size;
+	long	node_data;
+	int		i;
+
+	list_size = argc - 1;
+	i = 1;
+	while (i <= list_size)
+	{
+		node_data = (long)ft_atoll(argv[i]);
+		if (node_data == 0 && util_is_zero(argv[i]) == 1)
+			return (push_swap_print_error(1));
+		if (node_data > INT_MAX || node_data < INT_MIN)
+			return (push_swap_print_error(2));
+		ft_llint_data_add_back(stack, node_data);
+		i++;
+	}
+	return (check_duplicates(stack));
+}
 static int	clean_b4exit(t_llint *stack_a, t_llint *stack_b)
 {
 	ft_llint_del_list(stack_a);
 	ft_llint_del_list(stack_b);
 	return (0);
+}
+
+int	main(int argc, char **argv)
+{
+	int		error;
+	t_llint	*stack_a;
+	t_llint	*stack_b;
+
+	if (argc == 1)
+		return (push_swap_print_error(0));
+	stack_a = ft_llint_new();
+	stack_b = ft_llint_new();
+	error = main_argument_parser(argc, argv, stack_a);
+	if (error)
+		return (clean_b4exit(stack_a, stack_b));
+	if (stack_a->size > 1 && stack_a->size <= 3)
+		baby_sort(stack_a);
+	else
+		sortzilla(stack_a, stack_b);
+	return (clean_b4exit(stack_a, stack_b));
 }

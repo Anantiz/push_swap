@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 13:01:20 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:52:08 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
+
+# define LAYERZILLA 6
 
 void		baby_sort(t_llint *stack);
 void		sortzilla(t_llint *stack_a, t_llint *stack_b);
@@ -50,6 +52,6 @@ FOR LIBFT
 */
 
 long		*ft_llint_to_arr(t_llint *llist);
-void		ft_quicksort(long *list, size_t low_index, size_t high_index);
+void		ft_quicksort(long *list, long low_index, long high_index);
 
 #endif

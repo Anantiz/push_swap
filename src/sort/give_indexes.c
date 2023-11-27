@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:42:12 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 13:06:13 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:36:01 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,17 @@ long	*ft_llint_to_arr(t_llint *llist)
 void	give_indexes(t_llint *list)
 {
 	long		*array;
-	size_t		i;
 	t_nodeint	*node;
 
-	if (!list)
+	if (!list || list->size <= 0)
 		return ;
 	array = ft_llint_to_arr(list);
 	ft_quicksort(array, 0, list->size - 1);
-	i = 0;
 	node = list->head;
 	while (node)
 	{
 		node->index = find_data_in_array(array, node->data, list->size);
 		node = node->next;
 	}
+	free(array);
 }

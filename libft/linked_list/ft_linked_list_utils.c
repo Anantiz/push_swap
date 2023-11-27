@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:54:01 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 13:07:02 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:32:25 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	ft_llint_print(t_llint *list)
 	i = 0;
 	while (node)
 	{
-		ft_printf("node %l: %l\t\tindex= %ld\n", i, node->data, node->index);
+		ft_printf("node %l: %l\t\tindex= %u\n", i, node->data, \
+			(unsigned int)node->index);
 		node = node->next;
 		i++;
 	}
@@ -41,7 +42,8 @@ void	ft_llint_printm(t_llint *list)
 	ft_printf("Head: %x\tTail: %x\n", list->head, list->last);
 	while (node)
 	{
-		ft_printf("node_%l: %l\tAddress: %x\n", i, node->data, node);
+		ft_printf("node_%l: %l\tAddress: %x\t\tindex= %u\n", \
+			i, node->data, node, (unsigned int)node->index);
 		node = node->next;
 		i++;
 	}
