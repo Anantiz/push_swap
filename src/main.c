@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/25 13:57:09 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:02:47 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static int	main_argument_parser(int argc, char **argv, t_llint *stack)
 		node_data = (long)ft_atoll(argv[i]);
 		if (node_data == 0 && util_is_zero(argv[i]) == 1)
 			return (push_swap_print_error());
+		if (node_data > INT_MAX || node_data < INT_MAX)
+			return (push_swap_print_error());
 		ft_llint_data_add_back(stack, node_data);
 		i++;
 	}
@@ -80,4 +82,3 @@ static int	clean_b4exit(t_llint *stack_a, t_llint *stack_b)
 	ft_llint_del_list(stack_b);
 	return (0);
 }
-

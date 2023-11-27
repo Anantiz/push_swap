@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:45:19 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 17:21:10 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 11:42:26 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,3 @@ void	sortzilla(t_llint *stack_a, t_llint *stack_b)
 {
 	
 }
-
-/*
-if A < B.last
-	push_B
-	if A 
-
-*/

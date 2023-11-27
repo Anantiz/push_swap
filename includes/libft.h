@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:44:18 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 16:53:37 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 11:39:15 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ LINKED LIST
 typedef struct s_nodeint
 {
 	long				data;
+	size_t				index;
 	struct s_nodeint	*next;
 	struct s_nodeint	*previous;
 }t_nodeint;

@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/25 15:40:46 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/27 13:01:20 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,13 @@ UTILS
 
 int			check_sort(t_llint *list);
 int			check_duplicates(t_llint *list);
+void		give_indexes(t_llint *list);
+
+/*
+FOR LIBFT
+*/
+
+long		*ft_llint_to_arr(t_llint *llist);
+void		ft_quicksort(long *list, size_t low_index, size_t high_index);
 
 #endif
