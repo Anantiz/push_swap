@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 19:41:28 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 13:28:13 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	main_argument_parser(int argc, char **argv, t_llint *stack)
 			return (push_swap_print_error(1));
 		if (node_data > INT_MAX || node_data < INT_MIN)
 			return (push_swap_print_error(2));
-		ft_llint_data_add_back(stack, node_data);
+		ft_llint_data_add_back(stack, node_data, 0);
 		i++;
 	}
 	return (check_duplicates(stack));
@@ -58,7 +58,7 @@ static int	clean_b4exit(t_llint *stack_a, t_llint *stack_b)
 	ft_llint_del_list(stack_b);
 	return (0);
 }
-
+size_t	op_mgcount = 0;
 int	main(int argc, char **argv)
 {
 	int		error;
@@ -76,5 +76,6 @@ int	main(int argc, char **argv)
 		baby_sort(stack_a);
 	else
 		sortzilla(stack_a, stack_b);
+	printf("\nSize: %lu\t\tOperation count: %lu\n", stack_a->size + stack_b->size ,op_mgcount);
 	return (clean_b4exit(stack_a, stack_b));
 }

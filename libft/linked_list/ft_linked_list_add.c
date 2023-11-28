@@ -6,13 +6,13 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:35:02 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 13:04:23 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 13:33:44 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_nodeint	*ft_llint_data_add_back(t_llint *list, long data)
+t_nodeint	*ft_llint_data_add_back(t_llint *list, long data, size_t index)
 {
 	t_nodeint	*node;
 
@@ -20,7 +20,7 @@ t_nodeint	*ft_llint_data_add_back(t_llint *list, long data)
 	if (!node || !list)
 		return (NULL);
 	node->data = data;
-	node->index = 0;
+	node->index = index;
 	node->next = NULL;
 	if (list->last)
 	{
@@ -34,7 +34,7 @@ t_nodeint	*ft_llint_data_add_back(t_llint *list, long data)
 	return (node);
 }
 
-t_nodeint	*ft_llint_data_add_front(t_llint *list, long data)
+t_nodeint	*ft_llint_data_add_front(t_llint *list, long data, size_t index)
 {
 	t_nodeint	*node;
 
@@ -44,12 +44,14 @@ t_nodeint	*ft_llint_data_add_front(t_llint *list, long data)
 	if (!node)
 		return (NULL);
 	node->data = data;
-	node->index = 0;
+	node->index = index;
 	node->next = list->head;
-	if (list->head)
+	if (list->head != NULL)
 		list->head->previous = node;
-	node->previous = NULL;
+	if (list->last == NULL)
+		list->last = node;
 	list->head = node;
+	node->previous = NULL;
 	list->size++;
 	return (node);
 }

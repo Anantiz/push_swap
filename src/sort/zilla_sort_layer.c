@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:32:30 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 19:38:13 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 11:25:02 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static long	search_stack(t_llint *stack, long index)
 	return (0);
 }
 // 1 is top of stack,, negative is stack B
-static long	where_the_f_is_it(t_llint *a, t_llint *b, long index)
+long	where_the_f_is_it(t_llint *a, t_llint *b, long index)
 {
 	long		position;
 
@@ -97,70 +97,47 @@ int	who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 	else
 		cost = -low_index_cost;
 	printf("Cost:%ld\n",cost);
-	return (cost >= 0);
+	return (cost);
 }
-void	zilla_move_next(t_llint *a, t_llint *b)
+void	zilla_move_node(t_llint *a, t_llint *b, long index)
 {
-	long	index;
-
-	index = a->head->index - 1;
-	where_the_f_is_it(a, b, index);
-	if (index > (b->size / 2))
-	{
-		while ((long)b->head->index != index && b->head)
-			rev_rotate_b(b);
-	}
-	else
-	{
-		while ((long)b->head->index != index && b->head)
-			rotate_b(b);
-	}
-	push_a(b, a);
-}
-
-void	zilla_move_low(t_llint *a, t_llint *b, t_lydt *lydt)
-{
-	long	index;
-
 	if (!a->head || !b->head)
 	{
 		write(2, "WTF\n", 4);
 		return ;
 	}
-	index = lydt->low + lydt->offset - 1;
-	where_the_f_is_it(a, b, index);
+	//where_the_f_is_it(a, b, index);
 	if (index > (b->size / 2))
 	{
-		while ((long)b->head->index != index)
+		while ((long)b->head->index != index && b->head)
 			rev_rotate_b(b);
 	}
 	else
 	{
-		while ((long)b->head->index != index)
+		while ((long)b->head->index != index && b->head)
 			rotate_b(b);
 	}
 	push_a(b, a);
 }
+
 
 /* NOTE THATE YOU CAN MAYBE PUSH_A EVERYTHING AND ROTATE ONCE YOU HAVE THE RIGHT ONE ON TOP
 , but that will make only move_low possilbe*/
 void	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 {
 	size_t	copy_offset;
+	int		cost;
 	
 	lydt->offset = 0;
 	while (lydt->low + lydt->offset != a->head->index)
 	{
 		copy_offset = lydt->offset;
-		if (who_is_the_cheapest(a, b, lydt))
-		{
-			zilla_move_next(a, b);
-		}
+		cost = who_is_the_cheapest(a, b, lydt);
+		lydt->offset = copy_offset;
+		if (cost > 0)
+			zilla_move_node(a, b, a->head->index - 1);
 		else
-		{
-			lydt->offset = copy_offset + 1;
-			zilla_move_low(a, b, lydt);
-		}
+			zilla_move_node(a, b, lydt->low + lydt->offset++);
 	}
 	while (a->last->index < a->head->index)
 		rev_rotate_a(a);

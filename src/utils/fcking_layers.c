@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:05:54 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 18:19:56 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 13:12:39 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 long	lydt_mid(t_lydt *lydt)
 {
 	if (lydt)
-		return ((lydt->top - lydt->low) / 2);
+		return (lydt->low + ((lydt->top - lydt->low) / 2));
 	return (-1);
 }

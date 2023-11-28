@@ -6,7 +6,7 @@
 #    By: aurban <aurban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 12:48:20 by aurban            #+#    #+#              #
-#    Updated: 2023/11/27 19:19:25 by aurban           ###   ########.fr        #
+#    Updated: 2023/11/28 12:04:33 by aurban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ CC:=gcc
 INCLUDE_PATH=./includes
 CFLAGS:=-Wall -Werror -Wextra -I$(INCLUDE_PATH) -g3 -fsanitize=address
 RM:=rm -rf
+
 
 NAME:=push_swap
 LIBFT=libft.a

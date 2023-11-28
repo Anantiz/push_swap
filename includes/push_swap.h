@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 19:41:46 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 13:19:39 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_lydt
 	size_t	offset;
 }t_lydt;
 
+extern	size_t op_mgcount;
+
 void		baby_sort(t_llint *stack);
 void		sortzilla(t_llint *stack_a, t_llint *stack_b);
 void		zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt);
@@ -33,8 +35,8 @@ void		zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt);
 OPERATIONS
 */
 
-void		push_a(t_llint *stack_b, t_llint *stack_a);
-void		push_b(t_llint *stack_a, t_llint *stack_b);
+t_nodeint	*push_a(t_llint *stack_b, t_llint *stack_a);
+t_nodeint	*push_b(t_llint *stack_a, t_llint *stack_b);
 
 void		swap_a(t_llint *stack_a);
 void		swap_b(t_llint *stack_b);

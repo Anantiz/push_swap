@@ -6,15 +6,16 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:31:21 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 16:18:57 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 12:39:03 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+#include <stdio.h>
 void	ft_llint_rotate(t_llint *list)
 {
-	if (!list || !list->last || !list->head)
+	if ((!list || !list->last || !list->head) || list->size == 1)
 		return ;
 	list->last->next = list->head;
 	list->head->previous = list->last;
