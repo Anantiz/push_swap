@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:32:30 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/28 11:25:02 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 16:06:54 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,27 +99,52 @@ int	who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 	printf("Cost:%ld\n",cost);
 	return (cost);
 }
-void	zilla_move_node(t_llint *a, t_llint *b, long index)
+
+/*
+TAKES all layers one by one, as compared to 
+zilla_layering who do them 2 by two
+*/
+void	zilla_move_node(t_llint *a, t_llint *b, long index, int mode)
 {
-	if (!a->head || !b->head)
+	long	position;
+	// int count = 0;
+
+	if (!b->head)
 	{
 		write(2, "WTF\n", 4);
 		return ;
 	}
-	//where_the_f_is_it(a, b, index);
-	if (index > (b->size / 2))
+	position = where_the_f_is_it(a, b, index);
+	if (position > (b->size / 2))
 	{
-		while ((long)b->head->index != index && b->head)
+		while (b->head && (long)b->head->index != index)
 			rev_rotate_b(b);
 	}
 	else
 	{
-		while ((long)b->head->index != index && b->head)
+		while (b->head && (long)b->head->index != index)
+		{
 			rotate_b(b);
+			// if (count++ > 50)
+			// {
+			// 		printf("SEARCHING: %ld\n\n",index);
+			// 		ft_printf("STATE\n\n");
+			// 		printf("\n\t---\t--- A ---\t---\n\n");
+			// 		ft_llint_printm(a);
+			// 		printf("\n\t---\t--- B ---\t---\n\n");
+			// 		ft_llint_printm(b);
+			// 		printf("\n");
+			// 		fflush(NULL);
+			// 		exit(0);
+			// }
+		}
 	}
 	push_a(b, a);
+	if (mode == 1)
+	{
+		rotate_a(a);
+	}
 }
-
 
 /* NOTE THATE YOU CAN MAYBE PUSH_A EVERYTHING AND ROTATE ONCE YOU HAVE THE RIGHT ONE ON TOP
 , but that will make only move_low possilbe*/
@@ -131,13 +156,14 @@ void	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 	lydt->offset = 0;
 	while (lydt->low + lydt->offset != a->head->index)
 	{
+		printf("low: %lu  high: %lu\n", lydt->low, lydt->top);
 		copy_offset = lydt->offset;
 		cost = who_is_the_cheapest(a, b, lydt);
 		lydt->offset = copy_offset;
 		if (cost > 0)
-			zilla_move_node(a, b, a->head->index - 1);
+			zilla_move_node(a, b, a->head->index - 1, 0);
 		else
-			zilla_move_node(a, b, lydt->low + lydt->offset++);
+			zilla_move_node(a, b, lydt->low + lydt->offset++, 1);
 	}
 	while (a->last->index < a->head->index)
 		rev_rotate_a(a);

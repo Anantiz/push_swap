@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/28 13:28:13 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 16:08:58 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ int	main(int argc, char **argv)
 	else
 		sortzilla(stack_a, stack_b);
 	printf("\nSize: %lu\t\tOperation count: %lu\n", stack_a->size + stack_b->size ,op_mgcount);
+	if (!check_sort(stack_a))
+		printf("SORTED !!!\n");
 	return (clean_b4exit(stack_a, stack_b));
 }

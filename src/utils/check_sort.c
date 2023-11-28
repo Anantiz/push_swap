@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:27:10 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 16:35:37 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 16:09:32 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	check_sort(t_llint *list)
 	{
 		if (node->data > node->next->data)
 			return (i);
-		i ++;
+		node = node->next;
+		i++;
 	}
 	return (0);
 }

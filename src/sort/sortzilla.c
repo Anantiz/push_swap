@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:45:19 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/28 13:47:32 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 16:07:24 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,26 +78,32 @@ Find a way to push INDEX onto A while optimizing rotates
 	Push half the thing over it to A, the rr until INDEX
 	PUSH INDEX
 */
-void	zilla_phaseb(t_llint *stack_a, t_llint *stack_b, size_t og_size)
+/*
+Currently, we want to send one layer at a time, in reverse order,
+so first last layer, then second to last layer
+*/
+void	zilla_phaseb(t_llint *a, t_llint *b, size_t og_size)
 {
 	t_lydt	lydt;
 	int		layer;
 
-	layer = 0;
-	while (layer < LAYERZILLA)
+	layer = LAYERZILLA;
+	zilla_move_node(a ,b , og_size - 1, 0);
+	
+	while (layer)
 	{
-		if (layer % 2 == 0)
-		{
-			lydt.low = layer * (og_size / LAYERZILLA);
-			lydt.top = (layer + 1) * (og_size / LAYERZILLA);
-		}
-		else
-		{
-			lydt.low = (LAYERZILLA - layer - 1) * (og_size / LAYERZILLA);
-			lydt.top = (LAYERZILLA - layer) * (og_size / LAYERZILLA);
-		}
-		zillasort_layer(stack_a, stack_b, &lydt);
-		layer++;
+		// ft_printf("STATE\n\n");
+		// 	printf("\n\t---\t--- A ---\t---\n\n");
+		// 	ft_llint_printm(a);
+		// 	printf("\n\t---\t--- B ---\t---\n\n");
+		// 	ft_llint_printm(b);
+		// 	printf("\n");
+		// 	break ;
+		lydt.low = (layer - 1) * (og_size / LAYERZILLA);
+		lydt.top = (layer) * (og_size / LAYERZILLA);
+		printf("low: %lu  high: %lu\n", lydt.low, lydt.top);
+		zillasort_layer(a, b, &lydt);
+		layer--;
 	}
 }
 
@@ -113,7 +119,7 @@ void	sortzilla(t_llint *a, t_llint *b)
 			ft_llint_printm(a);
 	printf("Stack A size: %ld\tMath: %ld\n\n", a->size, a->size / 6);
 	zilla_layering(a, b, og_size); /* PUSH A TO B within layers (6 groups) */
-	//zilla_phaseb(stack_a, stack_b, og_size); /* PUSH BACK INTO A and sorts it*/
+	zilla_phaseb(a, b, og_size); /* PUSH BACK INTO A and sorts it*/
 	ft_printf("SORTZILLA DONE\n\n");
 			printf("\n\t---\t--- A ---\t---\n\n");
 			ft_llint_printm(a);
