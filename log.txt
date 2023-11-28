@@ -1,12 +1,20 @@
-LAYERING 4: count=282
-Layer  8: low=84	top=100	count=356
-Layer  7: low=72	top=84	count=386
-Layer  6: low=60	top=72	count=432
-Layer  5: low=48	top=60	count=488
-Layer  4: low=36	top=48	count=536
-Layer  3: low=24	top=36	count=590
-Layer  2: low=12	top=24	count=644
-Layer  1: low=0	top=12	count=686
+LAYERING 8: count=2369
+Layer  16: low=465	top=503	count=2645
+Layer  15: low=434	top=465	count=2814
+Layer  14: low=403	top=434	count=2973
+Layer  13: low=372	top=403	count=3147
+Layer  12: low=341	top=372	count=3358
+Layer  11: low=310	top=341	count=3532
+Layer  10: low=279	top=310	count=3695
+Layer  9: low=248	top=279	count=3883
+Layer  8: low=217	top=248	count=4068
+Layer  7: low=186	top=217	count=4238
+Layer  6: low=155	top=186	count=4425
+Layer  5: low=124	top=155	count=4595
+Layer  4: low=93	top=124	count=4776
+Layer  3: low=62	top=93	count=4960
+Layer  2: low=31	top=62	count=5151
+Layer  1: low=0	top=31	count=5300
 
-Size: 100		Operation count: 686
+Size: 503		Operation count: 5300
 SORTED !!!

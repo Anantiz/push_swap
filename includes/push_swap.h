@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/28 18:35:06 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 19:32:20 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
 # include "libft.h"
 #include <stdio.h>
 
-# define LAYERZILLA 8
+# define LAYERZILLA_SMALL 6
+# define LAYERZILLA 16
 
 typedef struct s_lydt
 {
 	size_t	low;
 	size_t	top;
 	size_t	offset;
+	size_t	layerzilla;
+	size_t	og_size;
 }t_lydt;
 
 extern	size_t op_mgcount;
@@ -32,7 +35,7 @@ int		sortzilla(t_llint *stack_a, t_llint *stack_b);
 int		zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt);
 
 long		where_the_f_is_it(t_llint *a, t_llint *b, long index);
-void		zilla_move_node(t_llint *a, t_llint *b, long index, int mode);
+void		zilla_move_node(t_llint *a, t_llint *b, long index);
 
 /*
 OPERATIONS

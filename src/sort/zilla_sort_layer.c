@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:32:30 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/28 18:33:03 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 20:22:48 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,22 @@ long	where_the_f_is_it(t_llint *a, t_llint *b, long index)
 		return (-search_stack(b, index));
 }
 
-static void	how_expensive_are_you(t_llint *a, t_llint *b, t_lydt *lydt, long *cost, long index, long next_count, int loop_count)
+static long	how_expensive_are_you(t_llint *a, t_llint *b, long index)
 {
 	long	pos;
+	long	cost;
 
-	if (index == -1 || index == (long)a->head->index || loop_count >= 1)
-		return ;
+	if (index == -1 || index == (long)a->head->index)
+		return (-1);
 	pos = search_stack(b, index);
 	if (pos < b->size / 2)
-	{
-		*cost += pos;
-		next_count++;
-	}
+		cost = pos;
 	else
-	{
-		*cost += b->size - pos + 3;
-		lydt->offset++;
-	}
-	loop_count++;
-	how_expensive_are_you(a, b, lydt, cost, a->head->index - next_count - 1, next_count, loop_count);
-	how_expensive_are_you(a, b, lydt, cost, lydt->low + lydt->offset, next_count, loop_count);
+		cost = b->size - pos + 2;
+	return (cost);
 }
 
-int	who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
+long	who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 {
 	long	index;
 	long	next_index_cost;
@@ -71,13 +64,9 @@ int	who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 	long	cost;
 
 	index = a->head->index - 1;
-	next_index_cost = 0;
-	how_expensive_are_you(a, b, lydt, &next_index_cost, index, 0, 0);
-
+	next_index_cost = how_expensive_are_you(a, b, index);
 	index = lydt->low + lydt->offset;
-	low_index_cost = 0;
-	how_expensive_are_you(a, b, lydt, &low_index_cost, index, 0, 0);
-	 
+	low_index_cost = how_expensive_are_you(a, b, index);
 	if (next_index_cost < low_index_cost)
 		cost = next_index_cost;
 	else
@@ -89,7 +78,7 @@ int	who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 TAKES all layers one by one, as compared to 
 zilla_layering who do them 2 by two
 */
-void	zilla_move_node(t_llint *a, t_llint *b, long index, int mode)
+void	zilla_move_node(t_llint *a, t_llint *b, long index)
 {
 	long	position;
 
@@ -107,37 +96,58 @@ void	zilla_move_node(t_llint *a, t_llint *b, long index, int mode)
 	else
 	{
 		while (b->head && (long)b->head->index != index)
-			rotate_b(b);
+			rotate_b(b);			
 	}
 	push_a(b, a);
-	if (mode == 1)
-		rotate_a(a); /*TO be optimized as fck*/
+}
+
+long	magic_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
+{
+	long	index;
+	long	next_index_cost;
+	long	low_index_cost;
+	long	cost;
+
+	index = a->head->next->index - 1;
+	next_index_cost = how_expensive_are_you(a, b, index);
+	index = lydt->low + lydt->offset + 1;
+	low_index_cost = how_expensive_are_you(a, b, index);
+	if (next_index_cost < low_index_cost)
+		cost = next_index_cost;
+	else
+		cost = -low_index_cost;
+	return (cost);
 }
 
 /* NOTE THATE YOU CAN MAYBE PUSH_A EVERYTHING AND ROTATE ONCE YOU HAVE THE RIGHT ONE ON TOP
 , but that will make only move_low possilbe*/
 int	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 {
-	size_t	copy_offset;
 	int		cost;
 	
 	lydt->offset = 0;
 	while (lydt->low + lydt->offset != a->head->index)
 	{
-		copy_offset = lydt->offset;
 		cost = who_is_the_cheapest(a, b, lydt);
-		lydt->offset = copy_offset;
 		if (cost > 0) /* if bigger than 0 move next, else move first node*/
-			zilla_move_node(a, b, a->head->index - 1, 0);
+			zilla_move_node(a, b, a->head->index - 1);
 		else
-			zilla_move_node(a, b, lydt->low + lydt->offset++, 1);
+		{
+			zilla_move_node(a, b, lydt->low + lydt->offset++);
+			if (magic_cheapest(a, b, lydt))
+				rotate_rotate(a, b);
+			else
+				rotate_a(a);
+		}
 	}
 	while (a->last->index < a->head->index)
-	{
-		// if (b->last && b->head && b->last->index > b->head->index)
-		// 	rev_rotate_rotate(a, b);
-		// else
-			rev_rotate_a(a);
-	}
+		rev_rotate_a(a);
 	return (0);
 }
+/*
+
+YOU ARE TRYING TO OPTIMIZE THE DOUBLE ROTATION when the lowest index is chosen
+you need to create a function to check if the next move will use a rotate
+if it does, then rotate rotate, else, rotate
+
+*/
