@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:27:10 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/28 16:09:32 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/28 17:42:29 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_sort(t_llint *list)
 
 	i = 0;
 	if (!list)
-		return (-1);
+		return (-2);
 	node = list->head;
 	while (node && node->next)
 	{
@@ -28,5 +28,5 @@ int	check_sort(t_llint *list)
 		node = node->next;
 		i++;
 	}
-	return (0);
+	return (-1);
 }

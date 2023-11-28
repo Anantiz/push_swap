@@ -1,0 +1,12 @@
+LAYERING 4: count=282
+Layer  8: low=84	top=100	count=356
+Layer  7: low=72	top=84	count=386
+Layer  6: low=60	top=72	count=432
+Layer  5: low=48	top=60	count=488
+Layer  4: low=36	top=48	count=536
+Layer  3: low=24	top=36	count=590
+Layer  2: low=12	top=24	count=644
+Layer  1: low=0	top=12	count=686
+
+Size: 100		Operation count: 686
+SORTED !!!
