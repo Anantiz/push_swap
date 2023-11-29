@@ -6,7 +6,7 @@
 #    By: aurban <aurban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/20 06:06:39 by aurban            #+#    #+#              #
-#    Updated: 2023/11/27 13:08:26 by aurban           ###   ########.fr        #
+#    Updated: 2023/11/29 10:08:48 by aurban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,9 +32,9 @@ FT_LINKED_LIST_FILES:= $(addprefix $(FT_LINKED_LIST_PATH)/,$(FT_LINKED_LIST_FILE
 
 FT_CONVERSIONS_PATH:=conversions
 FT_CONVERSIONS_FILES:=\
-	ft_itoa.c 	ft_uitoa.c	ft_uitohex.c	ft_ltohex.c ft_atoi.c		\
-	ft_ultohex.c	ft_lltoa.c	ft_atoldb.c	ft_atoll.c	ft_tolower.c	\
-	ft_toupper.c
+	ft_itoa.c 		ft_uitoa.c	ft_uitohex.c	ft_ltohex.c ft_atoi.c		\
+	ft_ultohex.c	ft_lltoa.c	ft_atoldb.c		ft_atoll.c	ft_tolower.c	\
+	ft_toupper.c	ft_max_abs.c
 FT_CONVERSIONS_FILES:=$(addprefix $(FT_CONVERSIONS_PATH)/,$(FT_CONVERSIONS_FILES))
 
 # --- PRINTF ---

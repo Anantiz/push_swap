@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:32:30 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/28 20:22:48 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/29 11:05:04 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static long	how_expensive_are_you(t_llint *a, t_llint *b, long index)
 	if (pos < b->size / 2)
 		cost = pos;
 	else
-		cost = b->size - pos + 2;
+		cost = -(b->size - pos + 2);
 	return (cost);
 }
 
@@ -64,9 +64,9 @@ long	who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 	long	cost;
 
 	index = a->head->index - 1;
-	next_index_cost = how_expensive_are_you(a, b, index);
+	next_index_cost = ft_abs_ll(how_expensive_are_you(a, b, index));
 	index = lydt->low + lydt->offset;
-	low_index_cost = how_expensive_are_you(a, b, index);
+	low_index_cost = ft_abs_ll(how_expensive_are_you(a, b, index));
 	if (next_index_cost < low_index_cost)
 		cost = next_index_cost;
 	else
@@ -81,10 +81,11 @@ zilla_layering who do them 2 by two
 void	zilla_move_node(t_llint *a, t_llint *b, long index)
 {
 	long	position;
+	int count = 0;
 
 	if (!b->head)
 	{
-		write(2, "WTF\n", 4);
+		write(2, "Error\n", 6);
 		return ;
 	}
 	position = search_stack(b, index);
@@ -96,7 +97,15 @@ void	zilla_move_node(t_llint *a, t_llint *b, long index)
 	else
 	{
 		while (b->head && (long)b->head->index != index)
-			rotate_b(b);			
+		{
+			rotate_b(b);
+			if (count++ > 25)
+			{
+				printf("index=%ld\n", index);
+				ft_llint_printm(a);
+				exit(0);
+			}
+		}
 	}
 	push_a(b, a);
 }
@@ -112,10 +121,7 @@ long	magic_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 	next_index_cost = how_expensive_are_you(a, b, index);
 	index = lydt->low + lydt->offset + 1;
 	low_index_cost = how_expensive_are_you(a, b, index);
-	if (next_index_cost < low_index_cost)
-		cost = next_index_cost;
-	else
-		cost = -low_index_cost;
+	cost = ft_max_ll(next_index_cost, low_index_cost);
 	return (cost);
 }
 
@@ -134,7 +140,7 @@ int	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 		else
 		{
 			zilla_move_node(a, b, lydt->low + lydt->offset++);
-			if (magic_cheapest(a, b, lydt))
+			if (a->head->next && magic_cheapest(a, b, lydt) > 1)
 				rotate_rotate(a, b);
 			else
 				rotate_a(a);

@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/28 18:27:20 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/29 11:12:08 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,12 @@ int	main(int argc, char **argv)
 	error = main_argument_parser(argc, argv, stack_a);
 	if (error)
 		return (clean_b4exit(stack_a, stack_b));
+	give_indexes(stack_a);
 	if (stack_a->size > 1 && stack_a->size <= 3)
 		baby_sort(stack_a);
 	else
 		error = sortzilla(stack_a, stack_b);
 	if (error)
 		push_swap_print_error(0);
-	FILE *fd = fopen("log.txt", "a");
-	fprintf(fd,"\nSize: %lu\t\tOperation count: %lu\n", stack_a->size + stack_b->size ,op_mgcount);
-	if (check_sort(stack_a) == -1)
-		fprintf(fd,"SORTED !!!\n");
-	else
-		fprintf(fd,"AAAAAAAAAAAAAAAAAAAAAa !!!\n");
-	fclose(fd);
 	return (clean_b4exit(stack_a, stack_b));
 }
