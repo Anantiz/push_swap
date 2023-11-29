@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:45:19 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 13:33:43 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/29 19:17:01 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ static void	zilla_get_layers(t_lydt *lydt, size_t layer)
 		lydt->top = lydt->og_size;
 }
 
-static void	rotate_opti_asf(t_llint *a, t_llint *b, size_t tl, size_t *loop_count, size_t start_a_size)
+static void	rotate_opti_asf(t_llint *a, t_llint *b, t_lydt *lydt, size_t *loop_count, size_t start_a_size)
 {
-	if (a->head && a->head->index > tl && *loop_count < start_a_size)
+	if ((a->head && a->head->index > lydt->top && *loop_count < start_a_size) ||
+	(a->head->index == lydt->og_size - 1 || a->head->index == lydt->og_size - 2 || a->head->index == lydt->og_size - 3 || a->head->index == lydt->og_size - 4 || a->head->index == lydt->og_size - 5))
 	{
 		rotate_rotate(a, b);
 		(*loop_count)++;
@@ -50,17 +51,19 @@ int	zilla_layering(t_llint *a, t_llint *b, t_lydt *lydt)
 		node = a->head;
 		start_a_size = a->size;
 		zilla_get_layers(lydt, layer);
-		while (a->size > 3 && loop_count++ < start_a_size)
+		while (a->size > 5 && loop_count++ < start_a_size)
 		{
-			if (node->index == lydt->og_size - 1 || node->index == lydt->og_size - 2 || node->index == lydt->og_size - 3)
+			if (node->index == lydt->og_size - 1 || node->index == lydt->og_size - 2 || node->index == lydt->og_size - 3 || node->index == lydt->og_size - 4 || node->index == lydt->og_size - 5)
 				rotate_a(a);
 			else if (node->index >= lydt->low && node->index < lydt->top) /*IF IN THE LAYERS, THEN PUSH*/
 			{
 				node = push_b(a, b);
 				if (!node)
-					return (-1) ;
+					return (-1);
+				if (node->next && node->next->index == node->index + 1)
+					swap_b(b);
 				if (node->index < (size_t)lydt_mid(lydt)) /*ROTATE IF should go under the stack B*/
-					rotate_opti_asf(a, b, lydt->top, &loop_count, start_a_size);
+					rotate_opti_asf(a, b, lydt, &loop_count, start_a_size);
 			}
 			else
 				rotate_a(a);
@@ -75,7 +78,7 @@ int	zilla_layering(t_llint *a, t_llint *b, t_lydt *lydt)
 Currently, we want to send one layer at a time, in reverse order,
 so first last layer, then second to last layer
 */
-void	zilla_phaseb(t_llint *a, t_llint *b, t_lydt	*lydt)
+void	zilla_phaseb(t_llint *a, t_llint *b, t_lydt *lydt)
 {
 	int		layer;
 
@@ -100,13 +103,18 @@ int	sortzilla(t_llint *a, t_llint *b)
 	if (check_sort(a) == -1)
 		return (0);
 	lydt.og_size = a->size;
-	if (a->size <= 110)
+	if (a->size <= 5)
+	{
+		sort_five(a, b, &lydt);
+		return (0);
+	}		
+	else if (a->size <= 110)
 		lydt.layerzilla = LAYERZILLA_SMALL;
 	else
 		lydt.layerzilla = LAYERZILLA;
 	if (zilla_layering(a, b, &lydt))
 		return (-1);
-	baby_sort(a);
+	sort_five(a, b, &lydt);
 	zilla_phaseb(a, b, &lydt);
 	return (0);
 }

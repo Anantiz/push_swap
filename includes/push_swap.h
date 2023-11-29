@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 10:33:56 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/29 19:17:55 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ typedef struct s_lydt
 extern	size_t op_mgcount;
 
 void		baby_sort(t_llint *stack);
-int		sortzilla(t_llint *stack_a, t_llint *stack_b);
-int		zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt);
+void		sort_five(t_llint *a, t_llint *b, t_lydt *lydt);
+int			sortzilla(t_llint *stack_a, t_llint *stack_b);
+int			zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt);
+void		sort_last_layer(t_llint *a, t_llint *b, t_lydt *lydt);
 
 long		where_the_f_is_it(t_llint *a, t_llint *b, long index);
 void		zilla_move_node(t_llint *a, t_llint *b, long index);

@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:32:30 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 13:33:19 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/29 19:28:15 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,6 @@ static long	search_stack(t_llint *stack, long index)
 	}	
 	return (0);
 }
-// 1 is top of stack,, negative is stack B
-long	where_the_f_is_it(t_llint *a, t_llint *b, long index)
-{
-	long		position;
-
-	position = search_stack(a, index);
-	if (position)
-		return (position);
-	else
-		return (-search_stack(b, index));
-}
 
 static long	how_expensive_are_you(t_llint *a, t_llint *b, long index)
 {
@@ -52,7 +41,7 @@ static long	how_expensive_are_you(t_llint *a, t_llint *b, long index)
 	if (pos < b->size / 2)
 		cost = pos;
 	else
-		cost = -(b->size - pos + 2);
+		cost = -(b->size - pos + 1);
 	return (cost);
 }
 
@@ -74,10 +63,6 @@ long	who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 	return (cost);
 }
 
-/*
-TAKES all layers one by one, as compared to 
-zilla_layering who do them 2 by two
-*/
 void	zilla_move_node(t_llint *a, t_llint *b, long index)
 {
 	long	position;
@@ -96,12 +81,14 @@ void	zilla_move_node(t_llint *a, t_llint *b, long index)
 	else
 	{
 		while (b->head && (long)b->head->index != index)
+		{
 			rotate_b(b);
+		}
 	}
 	push_a(b, a);
 }
 
-long	magic_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
+long	next_round_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 {
 	long	index;
 	long	next_index_cost;
@@ -133,7 +120,7 @@ int	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 			zilla_move_node(a, b, lydt->low + lydt->offset++);
 			if (lydt->low + lydt->offset == a->head->index)
 				break ;
-			else if (a->head->next && magic_cheapest(a, b, lydt) > 1)
+			else if (a->head->next && next_round_cheapest(a, b, lydt) > 1)
 				rotate_rotate(a, b);
 			else
 				rotate_a(a);
@@ -143,3 +130,16 @@ int	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 		rev_rotate_a(a);
 	return (0);
 }
+
+/*
+Instead of searching either next or lowest check these:
+	next,
+	lowest,
+	for 
+		next.index - 1 + next + swap
+		next.index - 2 + rotate + next - 1 + swap + rev_rotate
+		....
+	
+
+
+*/

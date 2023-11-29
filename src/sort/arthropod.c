@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_swap.c                                       :+:      :+:    :+:   */
+/*   arthropod.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 12:24:00 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 17:17:59 by aurban           ###   ########.fr       */
+/*   Created: 2023/11/29 16:11:26 by aurban            #+#    #+#             */
+/*   Updated: 2023/11/29 16:26:09 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_a(t_llint *stack_a)
-{
-	ft_llint_swap_data_front(stack_a);
-	op_mgcount++;
-	write(1, "sa\n", 3);
-}
 
-void	swap_b(t_llint *stack_b)
-{
-	ft_llint_swap_data_front(stack_b);
-	op_mgcount++;
-	write(1, "sb\n", 3);
-}
 
-void	swap_swap(t_llint *stack_a, t_llint *stack_b)
+void	arthropod_sort(t_llint *a, t_llint *b, t_lydt *lydt)
 {
-	ft_llint_swap_data_front(stack_a);
-	op_mgcount++;
-	ft_llint_swap_data_front(stack_b);
-	write(1, "ss\n", 3);
+	
 }
