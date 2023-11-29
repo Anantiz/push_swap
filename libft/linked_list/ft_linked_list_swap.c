@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:11:12 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/24 16:19:58 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/29 13:20:56 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,7 @@ void	ft_llint_swap_data_front(t_llint *list)
 	temp = list->head->data;
 	list->head->data = list->head->next->data;
 	list->head->next->data = temp;
+	temp = list->head->index;
+	list->head->index = list->head->next->index;
+	list->head->next->index = temp;
 }

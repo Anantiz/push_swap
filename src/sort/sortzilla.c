@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:45:19 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 11:14:35 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/29 13:33:43 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,6 @@ void	zilla_phaseb(t_llint *a, t_llint *b, t_lydt	*lydt)
 	}
 }
 
-void	sort_this_mother_fucker(t_llint *a)
-{
-	if (a->size != 3)
-		write(2, )
-	if (a->head)
-}
-
 int	sortzilla(t_llint *a, t_llint *b)
 {
 	t_lydt		lydt;
@@ -106,16 +99,14 @@ int	sortzilla(t_llint *a, t_llint *b)
 		return (1);
 	if (check_sort(a) == -1)
 		return (0);
-	// ft_llint_printm(a);
-	// exit(0);
 	lydt.og_size = a->size;
 	if (a->size <= 110)
 		lydt.layerzilla = LAYERZILLA_SMALL;
 	else
 		lydt.layerzilla = LAYERZILLA;
 	if (zilla_layering(a, b, &lydt))
-		return (-1);;
-	sort_this_mother_fucker(a);
+		return (-1);
+	baby_sort(a);
 	zilla_phaseb(a, b, &lydt);
 	return (0);
 }

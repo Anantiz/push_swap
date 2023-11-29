@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:32:30 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 11:05:04 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/29 13:33:19 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ zilla_layering who do them 2 by two
 void	zilla_move_node(t_llint *a, t_llint *b, long index)
 {
 	long	position;
-	int count = 0;
 
 	if (!b->head)
 	{
@@ -97,15 +96,7 @@ void	zilla_move_node(t_llint *a, t_llint *b, long index)
 	else
 	{
 		while (b->head && (long)b->head->index != index)
-		{
 			rotate_b(b);
-			if (count++ > 25)
-			{
-				printf("index=%ld\n", index);
-				ft_llint_printm(a);
-				exit(0);
-			}
-		}
 	}
 	push_a(b, a);
 }
@@ -140,7 +131,9 @@ int	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 		else
 		{
 			zilla_move_node(a, b, lydt->low + lydt->offset++);
-			if (a->head->next && magic_cheapest(a, b, lydt) > 1)
+			if (lydt->low + lydt->offset == a->head->index)
+				break ;
+			else if (a->head->next && magic_cheapest(a, b, lydt) > 1)
 				rotate_rotate(a, b);
 			else
 				rotate_a(a);
@@ -150,10 +143,3 @@ int	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 		rev_rotate_a(a);
 	return (0);
 }
-/*
-
-YOU ARE TRYING TO OPTIMIZE THE DOUBLE ROTATION when the lowest index is chosen
-you need to create a function to check if the next move will use a rotate
-if it does, then rotate rotate, else, rotate
-
-*/
