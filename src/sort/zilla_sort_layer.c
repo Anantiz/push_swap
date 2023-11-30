@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:32:30 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 11:09:48 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 11:49:16 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ long	search_stack(t_llint *stack, long index)
 	}	
 	return (0);
 }
+/*
+if Under stack, negative value
+if Over the stack positive
 
-static long	how_expensive_are_you(t_llint *a, t_llint *b, long index)
+Always has an absolute value of 1 or higher
+*/
+long	how_expensive_are_you(t_llint *a, t_llint *b, long index)
 {
 	long	pos;
 	long	cost;
@@ -45,7 +50,7 @@ static long	how_expensive_are_you(t_llint *a, t_llint *b, long index)
 	return (cost);
 }
 
-long	who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
+long	shitty_who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 {
 	long	index;
 	long	next_index_cost;
@@ -86,7 +91,7 @@ int	move_node(t_llint *a, t_llint *b, long index)
 		}
 	}
 	if (push_a(b, a) == NULL)
-		return (-1;)
+		return (-1);
 	return (0);
 }
 
@@ -114,7 +119,7 @@ int	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 	lydt->offset = 0;
 	while (lydt->low + lydt->offset != a->head->index)
 	{
-		cost = who_is_the_cheapest(a, b, lydt);
+		cost = shitty_who_is_the_cheapest(a, b, lydt);
 		if (cost > 0) /* if bigger than 0 move next, else move first node*/
 			move_node(a, b, a->head->index - 1);
 		else

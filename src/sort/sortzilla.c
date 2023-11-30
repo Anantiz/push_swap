@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:45:19 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 11:11:09 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 11:37:41 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	zilla_layering(t_llint *a, t_llint *b, t_lydt *lydt)
 Currently, we want to send one layer at a time, in reverse order,
 so first last layer, then second to last layer
 */
-void	zilla_phaseb(t_llint *a, t_llint *b, t_lydt *lydt)
+int	zilla_phaseb(t_llint *a, t_llint *b, t_lydt *lydt)
 {
 	int		layer;
 
@@ -89,9 +89,11 @@ void	zilla_phaseb(t_llint *a, t_llint *b, t_lydt *lydt)
 		lydt->top = (layer) * (lydt->og_size / lydt->layerzilla);
 		if (layer == LAYERZILLA)
 			lydt->top = lydt->og_size;
-		zillasort_layer(a, b, lydt);
+		if (zillasort_layer(a, b, lydt) == -1)
+			return (-1);
 		layer--;
 	}
+	return (0);
 }
 
 int	sortzilla(t_llint *a, t_llint *b)
@@ -104,10 +106,7 @@ int	sortzilla(t_llint *a, t_llint *b)
 		return (0);
 	lydt.og_size = a->size;
 	if (a->size <= 5)
-	{
-		sort_five(a, b, &lydt);
-		return (0);
-	}		
+		return (sort_five(a, b, &lydt));
 	else if (a->size <= 110)
 		lydt.layerzilla = LAYERZILLA_SMALL;
 	else

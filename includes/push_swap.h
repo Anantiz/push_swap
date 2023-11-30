@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 11:11:23 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 11:49:32 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,22 @@ typedef struct s_data
 	t_lydt		*lydt;
 }t_data;
 
-
-extern	size_t op_mgcount;
-
-int			baby_sort(t_llint *stack);
-int			sort_five(t_llint *a, t_llint *b, t_lydt *lydt);
-int			sortzilla(t_llint *stack_a, t_llint *stack_b);
-int			zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt);
-
-long		search_stack(t_llint *stack, long index);
-long		where_the_f_is_it(t_llint *a, t_llint *b, long index);
-int			zilla_move_node(t_llint *a, t_llint *b, long index);
-
-long		lydt_lowest(t_lydt *lydt);
-
 /*
 OPERATIONS
 */
+typedef enum {
+	PUSH_A = 1,
+	PUSH_B,
+	SWAP_A,
+	SWAP_B,
+	SWAP_SWAP,
+	ROTATE_A,
+	ROTATE_B,
+	ROTATE_ROTATE,
+	REV_ROTATE_A,
+	REV_ROTATE_B,
+	REV_ROTATE_ROTATE
+}e_operation;
 
 t_nodeint	*push_a(t_llint *stack_b, t_llint *stack_a);
 t_nodeint	*push_b(t_llint *stack_a, t_llint *stack_b);
@@ -75,9 +74,28 @@ void		rev_rotate_a(t_llint *stack);
 void		rev_rotate_b(t_llint *stack);
 void		rev_rotate_rotate(t_llint *stack_a, t_llint *stack_b);
 
+extern	size_t op_mgcount;
+
+/*
+CORE
+*/
+
+int			baby_sort(t_llint *stack);
+int			sort_five(t_llint *a, t_llint *b, t_lydt *lydt);
+int			sortzilla(t_llint *stack_a, t_llint *stack_b);
+int			zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt);
+
+long		search_stack(t_llint *stack, long index);
+long		where_the_f_is_it(t_llint *a, t_llint *b, long index);
+int			zilla_move_node(t_llint *a, t_llint *b, long index);
+
+long		lydt_lowest(t_lydt *lydt);
+
 /*
 UTILS
 */
+
+long		how_expensive_are_you(t_llint *a, t_llint *b, long index);
 
 int			check_sort(t_llint *list);
 int			check_duplicates(t_llint *list);

@@ -6,12 +6,15 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:05:54 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 10:44:49 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 11:40:56 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+middle of the layer
+*/
 long	lydt_mid(t_lydt *lydt)
 {
 	if (lydt)
@@ -19,6 +22,9 @@ long	lydt_mid(t_lydt *lydt)
 	return (-1);
 }
 
+/*
+size from lowest to top
+*/
 long	lydt_layer_size(t_lydt *lydt)
 {
 	if (lydt)	
@@ -26,6 +32,9 @@ long	lydt_layer_size(t_lydt *lydt)
 	return (-1);
 }
 
+/*
+size from lowest + off to top
+*/
 long	lydt_layer_off7size(t_lydt *lydt)
 {
 	if (lydt)	
@@ -33,6 +42,9 @@ long	lydt_layer_off7size(t_lydt *lydt)
 	return (-1);
 }
 
+/*
+lowest + offset
+*/
 long	lydt_lowest(t_lydt *lydt)
 {
 	if (lydt)
