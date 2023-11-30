@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 18:05:54 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 13:20:33 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 10:44:49 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,26 @@ long	lydt_mid(t_lydt *lydt)
 {
 	if (lydt)
 		return (lydt->low + ((lydt->top - lydt->low) / 2));
+	return (-1);
+}
+
+long	lydt_layer_size(t_lydt *lydt)
+{
+	if (lydt)	
+		return ((lydt->top - lydt->low));
+	return (-1);
+}
+
+long	lydt_layer_off7size(t_lydt *lydt)
+{
+	if (lydt)	
+		return ((lydt->top - (lydt->low + lydt->offset)));
+	return (-1);
+}
+
+long	lydt_lowest(t_lydt *lydt)
+{
+	if (lydt)
+		return (lydt->low + lydt->offset);
 	return (-1);
 }

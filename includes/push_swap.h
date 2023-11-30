@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 19:17:55 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 11:11:23 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # define LAYERZILLA_SMALL 6
 # define LAYERZILLA 16
 
+/*
+low
+top
+offset
+layerzilla
+og_size
+*/
 typedef struct s_lydt
 {
 	size_t	low;
@@ -28,16 +35,26 @@ typedef struct s_lydt
 	size_t	og_size;
 }t_lydt;
 
+typedef struct s_data
+{
+	t_llint		*a;
+	t_llint		*b;
+	t_lydt		*lydt;
+}t_data;
+
+
 extern	size_t op_mgcount;
 
-void		baby_sort(t_llint *stack);
-void		sort_five(t_llint *a, t_llint *b, t_lydt *lydt);
+int			baby_sort(t_llint *stack);
+int			sort_five(t_llint *a, t_llint *b, t_lydt *lydt);
 int			sortzilla(t_llint *stack_a, t_llint *stack_b);
 int			zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt);
-void		sort_last_layer(t_llint *a, t_llint *b, t_lydt *lydt);
 
+long		search_stack(t_llint *stack, long index);
 long		where_the_f_is_it(t_llint *a, t_llint *b, long index);
-void		zilla_move_node(t_llint *a, t_llint *b, long index);
+int			zilla_move_node(t_llint *a, t_llint *b, long index);
+
+long		lydt_lowest(t_lydt *lydt);
 
 /*
 OPERATIONS
@@ -68,6 +85,8 @@ void		give_indexes(t_llint *list);
 int			push_swap_print_error(int n);
 
 long		lydt_mid(t_lydt *lydt);
+long		lydt_layer_size(t_lydt *lydt);
+long		lydt_layer_off7size(t_lydt *lydt);
 
 /*
 FOR LIBFT

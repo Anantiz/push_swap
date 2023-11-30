@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:45:19 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 19:17:01 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 11:11:09 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,9 @@ int	sortzilla(t_llint *a, t_llint *b)
 		lydt.layerzilla = LAYERZILLA;
 	if (zilla_layering(a, b, &lydt))
 		return (-1);
-	sort_five(a, b, &lydt);
-	zilla_phaseb(a, b, &lydt);
+	if (sort_five(a, b, &lydt) == -1)
+		return (-1);
+	if (zilla_phaseb(a, b, &lydt) == -1)
+		return (-1);
 	return (0);
 }

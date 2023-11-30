@@ -6,14 +6,14 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:32:30 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 19:28:15 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 11:09:48 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //If on top of stack return 1
-static long	search_stack(t_llint *stack, long index)
+long	search_stack(t_llint *stack, long index)
 {
 	t_nodeint	*node;
 	long		i;
@@ -63,7 +63,7 @@ long	who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 	return (cost);
 }
 
-void	zilla_move_node(t_llint *a, t_llint *b, long index)
+int	move_node(t_llint *a, t_llint *b, long index)
 {
 	long	position;
 
@@ -85,7 +85,9 @@ void	zilla_move_node(t_llint *a, t_llint *b, long index)
 			rotate_b(b);
 		}
 	}
-	push_a(b, a);
+	if (push_a(b, a) == NULL)
+		return (-1;)
+	return (0);
 }
 
 long	next_round_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
@@ -114,10 +116,10 @@ int	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 	{
 		cost = who_is_the_cheapest(a, b, lydt);
 		if (cost > 0) /* if bigger than 0 move next, else move first node*/
-			zilla_move_node(a, b, a->head->index - 1);
+			move_node(a, b, a->head->index - 1);
 		else
 		{
-			zilla_move_node(a, b, lydt->low + lydt->offset++);
+			move_node(a, b, lydt->low + lydt->offset++);
 			if (lydt->low + lydt->offset == a->head->index)
 				break ;
 			else if (a->head->next && next_round_cheapest(a, b, lydt) > 1)
@@ -130,16 +132,3 @@ int	zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt)
 		rev_rotate_a(a);
 	return (0);
 }
-
-/*
-Instead of searching either next or lowest check these:
-	next,
-	lowest,
-	for 
-		next.index - 1 + next + swap
-		next.index - 2 + rotate + next - 1 + swap + rev_rotate
-		....
-	
-
-
-*/
