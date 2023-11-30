@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:45:19 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 18:12:57 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 20:00:59 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,45 @@ static void	zilla_get_layers(t_lydt *lydt, size_t layer)
 	layer *= 2;
 	lydt->low = layer * (lydt->og_size / lydt->layerzilla);
 	layer += 2;
-	lydt->top = layer* (lydt->og_size / lydt->layerzilla);
+	lydt->top = layer * (lydt->og_size / lydt->layerzilla);
 	if (layer == lydt->layerzilla)
 		lydt->top = lydt->og_size;
 }
 
-static void	rotate_opti_asf(t_llint *a, t_llint *b, t_lydt *lydt, size_t *loop_count, size_t start_a_size)
+static void	rotate_opti_asf(t_data *d, size_t *loop_count, size_t sa)
 {
-	if ((a->head && a->head->index > lydt->top && *loop_count < start_a_size) ||
-	(a->head->index == lydt->og_size - 1 || a->head->index == lydt->og_size - 2 || a->head->index == lydt->og_size - 3 || a->head->index == lydt->og_size - 4 || a->head->index == lydt->og_size - 5))
+	if ((d->a->head && d->a->head->index > d->lydt->top && *loop_count < sa) \
+		|| (d->a->head->index == d->lydt->og_size - 1 || d->a->head->index \
+		== d->lydt->og_size - 2 || d->a->head->index == d->lydt->og_size - 3 \
+		|| d->a->head->index == d->lydt->og_size - 4 || d->a->head->index \
+		== d->lydt->og_size - 5))
 	{
-		rotate_rotate(a, b);
+		rotate_rotate(d->a, d->b);
 		(*loop_count)++;
 	}
 	else
-		rotate_b(b);
+		rotate_b(d->b);
+}
+
+int	zilla_layering2(t_data *d, t_nodeint *nd, size_t *loop_count, size_t sa)
+{
+	if (nd->index == d->lydt->og_size - 1 || nd->index == d->lydt->og_size - 2 \
+		|| nd->index == d->lydt->og_size - 3 || nd->index \
+		== d->lydt->og_size - 4 || nd->index == d->lydt->og_size - 5)
+		rotate_a(d->a);
+	else if (nd->index >= d->lydt->low && nd->index < d->lydt->top)
+	{
+		nd = push_b(d->a, d->b);
+		if (!nd)
+			return (-1);
+		if (nd->next && nd->next->index == nd->index + 1)
+			swap_b(d->b);
+		if (nd->index < (size_t)lydt_mid(d->lydt))
+			rotate_opti_asf(d, loop_count, sa);
+	}
+	else
+		rotate_a(d->a);
+	return (0);
 }
 
 /*
@@ -41,9 +65,13 @@ int	zilla_layering(t_llint *a, t_llint *b, t_lydt *lydt)
 {
 	t_nodeint	*node;
 	size_t		layer;
-	size_t 		loop_count;
+	size_t		loop_count;
 	size_t		start_a_size;
+	t_data		d;
 
+	d.a = a;
+	d.b = b;
+	d.lydt = lydt;
 	layer = 0;
 	while (layer < (lydt->layerzilla / 2))
 	{
@@ -53,20 +81,7 @@ int	zilla_layering(t_llint *a, t_llint *b, t_lydt *lydt)
 		zilla_get_layers(lydt, layer);
 		while (a->size > 5 && loop_count++ < start_a_size)
 		{
-			if (node->index == lydt->og_size - 1 || node->index == lydt->og_size - 2 || node->index == lydt->og_size - 3 || node->index == lydt->og_size - 4 || node->index == lydt->og_size - 5)
-				rotate_a(a);
-			else if (node->index >= lydt->low && node->index < lydt->top) /*IF IN THE LAYERS, THEN PUSH*/
-			{
-				node = push_b(a, b);
-				if (!node)
-					return (-1);
-				if (node->next && node->next->index == node->index + 1)
-					swap_b(b);
-				if (node->index < (size_t)lydt_mid(lydt)) /*ROTATE IF should go under the stack B*/
-					rotate_opti_asf(a, b, lydt, &loop_count, start_a_size);
-			}
-			else
-				rotate_a(a);
+			zilla_layering2(&d, node, &loop_count, start_a_size);
 			node = a->head;
 		}
 		layer++;
@@ -74,37 +89,9 @@ int	zilla_layering(t_llint *a, t_llint *b, t_lydt *lydt)
 	return (0);
 }
 
-/*
-Currently, we want to send one layer at a time, in reverse order,
-so first last layer, then second to last layer
-*/
-int	zilla_phaseb(t_llint *a, t_llint *b, t_lydt *lydt)
-{
-	int		layer;
-	t_data	data;
-
-	data.a = a;
-	data.b = b;
-	data.lydt = lydt;
-	layer = lydt->layerzilla;
-	while (layer)
-	{
-		lydt->low = (layer - 1) * (lydt->og_size / lydt->layerzilla);
-		lydt->top = (layer) * (lydt->og_size / lydt->layerzilla);
-		if (layer == LAYERZILLA)
-			lydt->top = lydt->og_size;
-		// if (zillasort_layer(a, b, lydt) == -1)
-		// 	return (-1);
-		if (sortzilla_layersort(&data) == -1)
-			return (-1);
-		layer--;
-	}
-	return (0);
-}
-
 int	sortzilla(t_llint *a, t_llint *b)
 {
-	t_lydt		lydt;
+	t_lydt	lydt;
 
 	if (!a || !b)
 		return (1);

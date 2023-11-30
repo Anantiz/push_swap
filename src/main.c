@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 18:16:49 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 19:37:39 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	clean_b4exit(t_llint *stack_a, t_llint *stack_b)
 	ft_llint_del_list(stack_b);
 	return (0);
 }
-size_t	op_mgcount = 0;
+
 int	main(int argc, char **argv)
 {
 	int		error;
@@ -79,6 +79,5 @@ int	main(int argc, char **argv)
 		error = sortzilla(stack_a, stack_b);
 	if (error)
 		push_swap_print_error(0);
-	// printf("WE DID NOT CRASH !!!!\n");
 	return (clean_b4exit(stack_a, stack_b));
 }
