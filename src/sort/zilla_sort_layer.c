@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:32:30 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 11:49:16 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 12:42:27 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ long	how_expensive_are_you(t_llint *a, t_llint *b, long index)
 		cost = pos;
 	else
 		cost = -(b->size - pos + 1);
-	return (cost);
+	return (cost + 1);
 }
 
 long	shitty_who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)

@@ -6,7 +6,7 @@
 #    By: aurban <aurban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 12:48:20 by aurban            #+#    #+#              #
-#    Updated: 2023/11/28 12:04:33 by aurban           ###   ########.fr        #
+#    Updated: 2023/11/30 13:15:37 by aurban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT_PATH:=./libft
 SRC_FILES:=main.c
 
 OPERATIONS_FILES_PATH=operations
-OPERATIONS_FILES:= stack_push.c stack_rotate_inverse.c stack_rotate.c stack_swap.c
+OPERATIONS_FILES:= stack_push.c stack_rotate_inverse.c stack_rotate.c stack_swap.c undo_logs.c
 OPERATIONS_FILES:= $(addprefix $(OPERATIONS_FILES_PATH)/,$(OPERATIONS_FILES))
 
 UTILS_FILES_PATH=utils
@@ -34,7 +34,7 @@ UTILS_FILES:=$(addprefix $(UTILS_FILES_PATH)/,$(UTILS_FILES))
 
 SORT_FILES_PATH=sort
 SORT_FILES:= baby_sort.c sortzilla.c ft_quicksort.c give_indexes.c\
-	zilla_sort_layer.c
+	zilla_sort_layer.c	sortzilla_layersort.c
 SORT_FILES:=$(addprefix $(SORT_FILES_PATH)/,$(SORT_FILES))
 
 SRC_FILES+=$(OPERATIONS_FILES)

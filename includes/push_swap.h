@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 11:49:32 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 13:15:55 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ typedef struct s_data
 /*
 OPERATIONS
 */
-typedef enum {
+
+typedef enum e_operation{
 	PUSH_A = 1,
 	PUSH_B,
 	SWAP_A,
@@ -57,7 +58,7 @@ typedef enum {
 	REV_ROTATE_A,
 	REV_ROTATE_B,
 	REV_ROTATE_ROTATE
-}e_operation;
+}t_operation;
 
 t_nodeint	*push_a(t_llint *stack_b, t_llint *stack_a);
 t_nodeint	*push_b(t_llint *stack_a, t_llint *stack_b);
@@ -74,11 +75,30 @@ void		rev_rotate_a(t_llint *stack);
 void		rev_rotate_b(t_llint *stack);
 void		rev_rotate_rotate(t_llint *stack_a, t_llint *stack_b);
 
-extern	size_t op_mgcount;
+/* Logged ones*/
+
+void		undo_logs(t_data *d, t_llint *logs);
+
+t_nodeint	*push_a_log(t_llint *stack_b, t_llint *stack_a, t_llint *log);
+t_nodeint	*push_b_log(t_llint *stack_a, t_llint *stack_b, t_llint *log);
+
+void		swap_a_log(t_llint *stack_a, t_llint *log);
+void		swap_b_log(t_llint *stack_b, t_llint *log);
+void		swap_swap_log(t_llint *stack_a, t_llint *stack_b, t_llint *log);
+
+void		rotate_a_log(t_llint *stack, t_llint *log);
+void		rotate_b_log(t_llint *stack, t_llint *log);
+void		rotate_rotate_log(t_llint *stack_a, t_llint *stack_b, t_llint *log);
+
+void		rev_rotate_a_log(t_llint *stack, t_llint *log);
+void		rev_rotate_b_log(t_llint *stack, t_llint *log);
+void		rev_rotate_rotate_log(t_llint *stack_a, t_llint *stack_b, t_llint *log);
 
 /*
 CORE
 */
+
+extern	size_t op_mgcount;
 
 int			baby_sort(t_llint *stack);
 int			sort_five(t_llint *a, t_llint *b, t_lydt *lydt);
