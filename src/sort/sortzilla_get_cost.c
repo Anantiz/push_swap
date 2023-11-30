@@ -6,11 +6,28 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 19:21:42 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 20:05:30 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 20:16:25 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	get_nimi_cost(t_data *d, size_t nimi, t_gl *gl, t_llint *logs)
+{
+	(*gl->cost) += move_node_logs(d, nimi, logs);
+	if (nimi == gl->next_i)
+	{
+		swap_a_log(d->a, logs);
+		(*gl->cost)++;
+		return ;
+	}
+	else if (nimi < gl->next_i - 2)
+	{
+		rotate_a_log(d->a, logs);
+		(*gl->cost)++;
+	}
+	get_nimi_cost(d, nimi + 1, gl, logs);
+}
 
 long	move_node_logs(t_data *d, size_t index, t_llint *logs)
 {
