@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:42:16 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/28 12:38:52 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 16:51:09 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*ft_llint_del_node(t_llint *list, t_nodeint *node)
 		node->next->previous = node->previous;
 	//printf("2.5\n");
 	// fflush(NULL);
-	if (node->previous != NULL && (unsigned long)node->previous != 0xbebebebebebebebe)
+	if (node->previous != NULL)
 	{
 	// 	printf("2.8\n");
 	// 	fflush(NULL);

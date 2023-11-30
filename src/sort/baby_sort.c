@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:00:36 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 11:14:25 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 15:39:11 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	baby_sort(t_llint *stack)
 {
 	if (!stack || !stack->head)
-		return ;
+		return (-1);
 	if (stack->head->index > stack->last->index)
 		rotate_a(stack);
 	if (stack->head->index > stack->last->index)
@@ -33,7 +33,7 @@ int	baby_sort(t_llint *stack)
 	return (0);
 }
 
-static int	sort_five2(t_llint *a, t_llint *b, t_lydt *lydt, long og_size_b)
+static int	sort_five2(t_llint *a, t_llint *b, t_lydt *lydt, size_t og_size_b)
 {
 	baby_sort(a);
 	while (a->size != 5 || check_sort(a) != -1)
@@ -43,8 +43,10 @@ static int	sort_five2(t_llint *a, t_llint *b, t_lydt *lydt, long og_size_b)
 		else if (a->last->index == a->head->index - 1)
 			rev_rotate_a(a);	
 		else if (b->head->index == a->head->index - 1)
+		{
 			if (!push_a(b, a))
 				return (-1);	
+		}
 		else if (b->size == og_size_b && a->last->index != \
 			(lydt->og_size - a->size))
 			rev_rotate_a(a);
@@ -54,7 +56,7 @@ static int	sort_five2(t_llint *a, t_llint *b, t_lydt *lydt, long og_size_b)
 
 int	sort_five(t_llint *a, t_llint *b, t_lydt *lydt)
 {
-	long	og_size_b;
+	size_t	og_size_b;
 	
 	og_size_b = b->size;
 	if (a->last->index == (lydt->og_size - a->size))
@@ -62,8 +64,10 @@ int	sort_five(t_llint *a, t_llint *b, t_lydt *lydt)
 	while (a->last->index != lydt->og_size - 1)
 	{
 		if (a->head->index == (lydt->og_size - a->size))
+		{
 			if (!push_b(a , b))
-				return (-1);	
+				return (-1);
+		}
 		else
 			rotate_a(a);
 	}

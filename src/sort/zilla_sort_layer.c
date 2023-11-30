@@ -6,50 +6,13 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 16:32:30 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 12:42:27 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 18:34:40 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 //If on top of stack return 1
-long	search_stack(t_llint *stack, long index)
-{
-	t_nodeint	*node;
-	long		i;
-
-	i = 0;
-	node = stack->head;
-	while (node)
-	{
-		i++;
-		if ((long)node->index == index)
-			return (i);
-		node = node->next;
-	}	
-	return (0);
-}
-/*
-if Under stack, negative value
-if Over the stack positive
-
-Always has an absolute value of 1 or higher
-*/
-long	how_expensive_are_you(t_llint *a, t_llint *b, long index)
-{
-	long	pos;
-	long	cost;
-
-	if (index == -1 || index == (long)a->head->index)
-		return (-1);
-	pos = search_stack(b, index);
-	if (pos < b->size / 2)
-		cost = pos;
-	else
-		cost = -(b->size - pos + 1);
-	return (cost + 1);
-}
-
 long	shitty_who_is_the_cheapest(t_llint *a, t_llint *b, t_lydt *lydt)
 {
 	long	index;
@@ -75,10 +38,10 @@ int	move_node(t_llint *a, t_llint *b, long index)
 	if (!b->head)
 	{
 		write(2, "Error\n", 6);
-		return ;
+		return (-1);
 	}
 	position = search_stack(b, index);
-	if (position > (b->size / 2))
+	if (position > (long)(b->size / 2))
 	{
 		while (b->head && (long)b->head->index != index)
 			rev_rotate_b(b);

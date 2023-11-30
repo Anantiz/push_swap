@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/29 16:44:31 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 18:16:49 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int	main(int argc, char **argv)
 		error = sortzilla(stack_a, stack_b);
 	if (error)
 		push_swap_print_error(0);
+	// printf("WE DID NOT CRASH !!!!\n");
 	return (clean_b4exit(stack_a, stack_b));
 }

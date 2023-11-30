@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:54:01 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/28 12:46:51 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 17:06:38 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_llint_print(t_llint *list)
 		node = node->next;
 		i++;
 	}
+	ft_printf("\n");
 }
 
 void	ft_llint_printm(t_llint *list)
@@ -47,6 +48,7 @@ void	ft_llint_printm(t_llint *list)
 		node = node->next;
 		i++;
 	}
+	ft_printf("\n");
 }
 
 void	*ft_llint_search_list(t_llint *list, long n)

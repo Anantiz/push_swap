@@ -6,13 +6,13 @@
 #    By: aurban <aurban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 12:48:20 by aurban            #+#    #+#              #
-#    Updated: 2023/11/30 13:15:37 by aurban           ###   ########.fr        #
+#    Updated: 2023/11/30 18:17:03 by aurban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC:=gcc
 INCLUDE_PATH=./includes
-CFLAGS:=-Wall -Werror -Wextra -I$(INCLUDE_PATH) -g3 -fsanitize=address
+CFLAGS:=-Wall -Werror -Wextra -I$(INCLUDE_PATH)# -g3 -fsanitize=address
 RM:=rm -rf
 
 

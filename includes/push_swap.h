@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 13:15:55 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 18:19:56 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ typedef struct s_lydt
 	size_t	og_size;
 }t_lydt;
 
+long		lydt_mid(t_lydt *lydt);
+long		lydt_lowest(t_lydt *lydt);
+long		lydt_layer_size(t_lydt *lydt);
+long		lydt_layer_off7size(t_lydt *lydt);
+
 typedef struct s_data
 {
 	t_llint		*a;
@@ -43,7 +48,7 @@ typedef struct s_data
 }t_data;
 
 /*
-OPERATIONS
+OPERATIONS --------------------------------------------------------------------
 */
 
 typedef enum e_operation{
@@ -95,7 +100,7 @@ void		rev_rotate_b_log(t_llint *stack, t_llint *log);
 void		rev_rotate_rotate_log(t_llint *stack_a, t_llint *stack_b, t_llint *log);
 
 /*
-CORE
+CORE --------------------------------------------------------------------------
 */
 
 extern	size_t op_mgcount;
@@ -103,34 +108,30 @@ extern	size_t op_mgcount;
 int			baby_sort(t_llint *stack);
 int			sort_five(t_llint *a, t_llint *b, t_lydt *lydt);
 int			sortzilla(t_llint *stack_a, t_llint *stack_b);
-int			zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt);
 
-long		search_stack(t_llint *stack, long index);
-long		where_the_f_is_it(t_llint *a, t_llint *b, long index);
-int			zilla_move_node(t_llint *a, t_llint *b, long index);
+int			sortzilla_layersort(t_data *d); // Clean
+int			zillasort_layer(t_llint *a, t_llint *b, t_lydt *lydt); //Shitty
 
-long		lydt_lowest(t_lydt *lydt);
 
 /*
-UTILS
+UTILS -------------------------------------------------------------------------
 */
 
+long		search_stack(t_llint *stack, long index);
+int			move_node(t_llint *a, t_llint *b, long index);
 long		how_expensive_are_you(t_llint *a, t_llint *b, long index);
+
+int			push_swap_print_error(int n);
+
+
+/*
+FOR LIBFT ---------------------------------------------------------------------
+*/
 
 int			check_sort(t_llint *list);
 int			check_duplicates(t_llint *list);
-void		give_indexes(t_llint *list);
-int			push_swap_print_error(int n);
-
-long		lydt_mid(t_lydt *lydt);
-long		lydt_layer_size(t_lydt *lydt);
-long		lydt_layer_off7size(t_lydt *lydt);
-
-/*
-FOR LIBFT
-*/
-
 long		*ft_llint_to_arr(t_llint *llist);
+void		give_indexes(t_llint *list);
 void		ft_quicksort(long *list, long low_index, long high_index);
 
 #endif

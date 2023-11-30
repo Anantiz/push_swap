@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:45:19 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 11:37:41 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 18:12:57 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,11 @@ so first last layer, then second to last layer
 int	zilla_phaseb(t_llint *a, t_llint *b, t_lydt *lydt)
 {
 	int		layer;
+	t_data	data;
 
+	data.a = a;
+	data.b = b;
+	data.lydt = lydt;
 	layer = lydt->layerzilla;
 	while (layer)
 	{
@@ -89,7 +93,9 @@ int	zilla_phaseb(t_llint *a, t_llint *b, t_lydt *lydt)
 		lydt->top = (layer) * (lydt->og_size / lydt->layerzilla);
 		if (layer == LAYERZILLA)
 			lydt->top = lydt->og_size;
-		if (zillasort_layer(a, b, lydt) == -1)
+		// if (zillasort_layer(a, b, lydt) == -1)
+		// 	return (-1);
+		if (sortzilla_layersort(&data) == -1)
 			return (-1);
 		layer--;
 	}
