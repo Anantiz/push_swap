@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 19:21:42 by aurban            #+#    #+#             */
-/*   Updated: 2023/12/01 17:04:56 by aurban           ###   ########.fr       */
+/*   Updated: 2023/12/01 19:52:13 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ static long	cost_to_move_nimi(t_data *d, size_t nimi)
 	gl.cost = &cost;
 	get_nimi_cost(d, nimi, &gl, logs);
 	undo_logs(d, logs);
-	ft_llint_del_list(logs);
 	return (cost - ((d->a->head->index - nimi + 1) * 2));
 }
 

@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:42:12 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/27 13:36:01 by aurban           ###   ########.fr       */
+/*   Updated: 2023/12/01 19:51:50 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	give_indexes(t_llint *list)
 	if (!list || list->size <= 0)
 		return ;
 	array = ft_llint_to_arr(list);
+	if (!array)
+		return ;
 	ft_quicksort(array, 0, list->size - 1);
 	node = list->head;
 	while (node)

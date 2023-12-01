@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 13:14:18 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 19:39:24 by aurban           ###   ########.fr       */
+/*   Updated: 2023/12/01 19:40:57 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static void	undo_logs_2(t_data *d, t_nodeint *node)
 		rr_log(d->a, d->b, NULL);
 }
 
+/*
+Free the list and it's content
+*/
 void	undo_logs(t_data *d, t_llint *logs)
 {
 	t_nodeint	*node;
@@ -49,8 +52,10 @@ void	undo_logs(t_data *d, t_llint *logs)
 			swap_b_log(d->b, NULL);
 		else
 			undo_logs_2(d, node);
+		free(node);
 		node = previous_node;
 	}
+	free (logs);
 }
 
 void	swap_swap_log(t_llint *stack_a, t_llint *stack_b, t_llint *log)

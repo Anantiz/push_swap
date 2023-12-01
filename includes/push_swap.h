@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:13:31 by aurban            #+#    #+#             */
-/*   Updated: 2023/12/01 17:06:04 by aurban           ###   ########.fr       */
+/*   Updated: 2023/12/01 21:03:21 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,11 @@ long		how_expensive_are_you(t_llint *a, t_llint *b, long index);
 
 int			push_swap_print_error(int n);
 void		get_nimi_cost(t_data *d, size_t nimi, t_gl *gl, t_llint *logs);
+
+int			util_is_zero(char *str);
+int			push_swap_print_error(int n);
+int			main_argument_parser(int argc, char **argv, t_llint *stack);
+int			clean_b4exit(t_llint *stack_a, t_llint *stack_b);
 
 /*
 FOR LIBFT ---------------------------------------------------------------------

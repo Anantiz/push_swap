@@ -6,7 +6,7 @@
 #    By: aurban <aurban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/20 06:06:39 by aurban            #+#    #+#              #
-#    Updated: 2023/11/30 18:17:20 by aurban           ###   ########.fr        #
+#    Updated: 2023/12/01 20:50:06 by aurban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ LIBFT_NAME:=libft.a
 
 CC:=gcc
 INCLUDE_PATH= ../includes
-CFLAGS:=-Wall -Werror -Wextra -I$(INCLUDE_PATH)# -g3 -fsanitize=address
+CFLAGS:=-Wall -Werror -Wextra -I$(INCLUDE_PATH) -g3 -fsanitize=address
 
 FT_FILES:=		\
 	ft_bzero.c	\
@@ -42,6 +42,12 @@ FT_CONVERSIONS_FILES:=$(addprefix $(FT_CONVERSIONS_PATH)/,$(FT_CONVERSIONS_FILES
 FT_PRINTF_PATH=ft_printf
 FT_PRINTF_FILES=ft_printf.c	ft_send_to_buffer.c	ft_arg_to_buffer.c 
 FT_PRINTF_FILES:=$(addprefix $(FT_PRINTF_PATH)/,$(FT_PRINTF_FILES))
+
+# --- GET NEXT LINE ---
+
+FT_GNL_PATH=gaz_naturel_liquefie
+FT_GNL_FILES=get_next_line.c	get_next_line_utils.c
+FT_GNL_FILES:=$(addprefix $(FT_GNL_PATH)/,$(FT_GNL_FILES))
 
 # --- STRINGS ---
 
