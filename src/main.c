@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 11:15:07 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 18:16:49 by aurban           ###   ########.fr       */
+/*   Updated: 2023/12/01 17:03:29 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,14 @@ static int	main_argument_parser(int argc, char **argv, t_llint *stack)
 	}
 	return (check_duplicates(stack));
 }
+
 static int	clean_b4exit(t_llint *stack_a, t_llint *stack_b)
 {
 	ft_llint_del_list(stack_a);
 	ft_llint_del_list(stack_b);
 	return (0);
 }
-size_t	op_mgcount = 0;
+
 int	main(int argc, char **argv)
 {
 	int		error;
@@ -75,10 +76,9 @@ int	main(int argc, char **argv)
 	give_indexes(stack_a);
 	if (stack_a->size > 1 && stack_a->size <= 3)
 		baby_sort(stack_a);
-	else	
+	else
 		error = sortzilla(stack_a, stack_b);
 	if (error)
 		push_swap_print_error(0);
-	// printf("WE DID NOT CRASH !!!!\n");
 	return (clean_b4exit(stack_a, stack_b));
 }

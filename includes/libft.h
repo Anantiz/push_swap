@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 15:44:18 by aurban            #+#    #+#             */
-/*   Updated: 2023/11/30 10:32:43 by aurban           ###   ########.fr       */
+/*   Updated: 2023/11/30 19:36:02 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ long double	ft_atoldb(char *str);
 char		*ft_itoa(int n);
 char		*ft_uitoa(unsigned int n);
 char		*ft_lltoa(long long n);
-char		*ft_uitohex(unsigned int n); 
+char		*ft_uitohex(unsigned int n);
 char		*ft_uitohex_up(unsigned int n);
 char		*ft_ltohex(long n);
 char		*ft_ltohex_up(long n);

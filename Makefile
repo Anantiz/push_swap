@@ -6,7 +6,7 @@
 #    By: aurban <aurban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 12:48:20 by aurban            #+#    #+#              #
-#    Updated: 2023/11/30 18:17:03 by aurban           ###   ########.fr        #
+#    Updated: 2023/11/30 20:01:35 by aurban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ UTILS_FILES:=$(addprefix $(UTILS_FILES_PATH)/,$(UTILS_FILES))
 
 SORT_FILES_PATH=sort
 SORT_FILES:= baby_sort.c sortzilla.c ft_quicksort.c give_indexes.c\
-	zilla_sort_layer.c	sortzilla_layersort.c
+	sortzilla_utils.c	sortzilla_layersort.c	sortzilla_get_cost.c
 SORT_FILES:=$(addprefix $(SORT_FILES_PATH)/,$(SORT_FILES))
 
 SRC_FILES+=$(OPERATIONS_FILES)
