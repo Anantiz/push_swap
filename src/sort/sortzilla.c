@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 16:45:19 by aurban            #+#    #+#             */
-/*   Updated: 2023/12/02 16:33:16 by aurban           ###   ########.fr       */
+/*   Updated: 2023/12/04 20:48:31 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	sortzilla(t_llint *a, t_llint *b)
 	lydt.og_size = a->size;
 	if (a->size <= 5)
 		return (sort_five(a, b, &lydt));
-	else if (a->size < 100)
+	else if (a->size < 80)
 		lydt.layerzilla = 2;
 	else if (a->size >= 64 && a->size < 450)
 		lydt.layerzilla = LAYERZILLA_SMALL;

@@ -6,7 +6,7 @@
 /*   By: aurban <aurban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:00:36 by aurban            #+#    #+#             */
-/*   Updated: 2023/12/02 17:00:45 by aurban           ###   ########.fr       */
+/*   Updated: 2023/12/04 21:36:06 by aurban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,21 @@ int	baby_sort(t_llint *stack)
 	return (0);
 }
 
-static int	sort_five2(t_llint *a, t_llint *b, t_lydt *lydt, size_t og_size_b)
+static int	sort_five2(t_llint *a, t_llint *b, size_t og_size_b)
 {
 	baby_sort(a);
-	while (b->head && (a->size != 5 || check_sort(a) != -1))
+	while (b->size > og_size_b || check_sort(a) != -1)
 	{
 		if (b->head && a->head->index < b->head->index)
 			rotate_a(a);
 		else if (a->last->index == a->head->index - 1)
 			rev_rotate_a(a);
-		else if (b->head->index == a->head->index - 1)
+		else if (b->head && b->head->index == a->head->index - 1)
 		{
 			if (!push_a(b, a))
 				return (-1);
 		}
-		else if (b->size == og_size_b && a->last->index != \
-			(lydt->og_size - a->size))
+		else
 			rev_rotate_a(a);
 	}
 	return (0);
@@ -77,7 +76,7 @@ int	sort_five(t_llint *a, t_llint *b, t_lydt *lydt)
 		if (b->head->next && b->head->next->index > b->head->index)
 			swap_b(b);
 	}
-	return (sort_five2(a, b, lydt, og_size_b));
+	return (sort_five2(a, b, og_size_b));
 }
 
 int	magic_solver(t_data *d)
@@ -121,3 +120,5 @@ int	zilla_phaseb(t_llint *a, t_llint *b, t_lydt *lydt)
 	}
 	return (0);
 }
+
+//72 55 33 21 94
